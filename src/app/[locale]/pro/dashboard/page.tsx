@@ -6,7 +6,7 @@ export default async function ProDashboard({ params }: { params: Promise<{ local
   const resolvedParams = await params;
   const session = await auth();
 
-  if (!session?.user?.id || !["ADMIN", "PROFESSIONAL"].includes(session.user.role)) {
+  if (!session?.user?.id || !["ADMIN", "PROFESSIONAL"].includes((session.user as any).role)) {
     redirect(`/${resolvedParams.locale}/login`);
   }
 
