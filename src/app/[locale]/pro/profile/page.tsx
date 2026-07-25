@@ -74,7 +74,7 @@ export default function ProProfilePage() {
             Sign out of your professional account. You will need to log back in to accept new jobs.
           </p>
           <Button 
-            variant="danger" 
+            variant="destructive" 
             className="rounded-full px-8 shadow-sm"
             onClick={() => signOut({ callbackUrl: "/" })}
           >
