@@ -14,7 +14,7 @@ const TrackingMap = dynamic(() => import("@/components/map/TrackingMap"), { ssr:
 export default function BookingDetailPage() {
   const params = useParams();
   const bookingId = params.id as string;
-  const status = "EN_ROUTE";
+  const status: string = "EN_ROUTE";
 
   const steps = [
     { label: "Booked", completed: true },
