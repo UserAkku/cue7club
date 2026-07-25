@@ -1,0 +1,18 @@
+
+> cue7club@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.11 (Turbopack)
+- Local:         http://localhost:3001
+- Network:       http://10.210.162.63:3001
+- Environments: .env
+✓ Ready in 299ms
+⨯ Another next dev server is already running.
+
+- Local:        http://localhost:3000
+- PID:          83035
+- Dir:          /Users/Akhilesh/ak-projects/cue7club
+- Log:          .next/dev/logs/next-development.log
+
+Run kill 83035 to stop it.
+[?25h

@@ -1,0 +1,302 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+}
+
+// ─── USERS ─────────────────────────────────────────────────────────────────
+
+model User {
+  id            String    @id @default(cuid())
+  name          String
+  email         String    @unique
+  phone         String?   @unique
+  passwordHash  String?
+  role          Role      @default(CUSTOMER)
+  image         String?
+  emailVerified DateTime?
+  preferredLang String    @default("en")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  addresses     Address[]
+  bookings      Booking[]
+  professional  Professional?
+  reviews       Review[]
+  otpTokens     OtpToken[]
+  accounts      Account[]
+  sessions      Session[]
+}
+
+enum Role {
+  CUSTOMER
+  PROFESSIONAL
+  ADMIN
+}
+
+// ─── OTP TOKENS ────────────────────────────────────────────────────────────
+
+model OtpToken {
+  id        String   @id @default(cuid())
+  userId    String?
+  email     String   @unique
+  token     String
+  expiresAt DateTime
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// ─── PROFESSIONAL PROFILE ──────────────────────────────────────────────────
+
+model Professional {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+  bio             String?
+  skills          String[]
+  rating          Float    @default(0)
+  totalReviews    Int      @default(0)
+  isVerified      Boolean  @default(false)
+  isActive        Boolean  @default(true)
+  aadharVerified  Boolean  @default(false)
+  earnings        Float    @default(0)
+  lastLat         Float?
+  lastLng         Float?
+  lastLocationAt  DateTime?
+  createdAt       DateTime @default(now())
+
+  user            User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  serviceAreas    ServiceArea[]
+  jobs            Booking[]      @relation("ProfessionalBookings")
+  availability    Availability[]
+}
+
+// ─── SERVICE CATEGORIES ────────────────────────────────────────────────────
+
+model ServiceCategory {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  nameHi      String?
+  slug        String    @unique
+  icon        String
+  image       String?
+  description String?
+  descHi      String?
+  isActive    Boolean   @default(true)
+  sortOrder   Int       @default(0)
+
+  services    Service[]
+}
+
+// ─── SERVICES ──────────────────────────────────────────────────────────────
+
+model Service {
+  id          String   @id @default(cuid())
+  categoryId  String
+  name        String
+  nameHi      String?
+  slug        String   @unique
+  description String
+  descHi      String?
+  shortDesc   String
+  shortDescHi String?
+  basePrice   Float
+  priceUnit   String
+  duration    Int
+  image       String?
+  isPopular   Boolean  @default(false)
+  isActive    Boolean  @default(true)
+  sortOrder   Int      @default(0)
+
+  category    ServiceCategory  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  packages    ServicePackage[]
+  bookings    Booking[]
+}
+
+model ServicePackage {
+  id          String   @id @default(cuid())
+  serviceId   String
+  name        String
+  nameHi      String?
+  price       Float
+  duration    Int
+  description String
+  descHi      String?
+  includes    String[]
+
+  service     Service   @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  bookings    Booking[]
+}
+
+// ─── ADDRESSES ─────────────────────────────────────────────────────────────
+
+model Address {
+  id        String  @id @default(cuid())
+  userId    String
+  label     String
+  line1     String
+  line2     String?
+  city      String
+  state     String
+  pincode   String
+  lat       Float?
+  lng       Float?
+  isDefault Boolean @default(false)
+
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bookings  Booking[]
+}
+
+// ─── BOOKINGS ──────────────────────────────────────────────────────────────
+
+model Booking {
+  id              String        @id @default(cuid())
+  bookingNumber   String        @unique
+  customerId      String
+  professionalId  String?
+  serviceId       String
+  packageId       String?
+  addressId       String
+  status          BookingStatus @default(PENDING)
+  scheduledAt     DateTime
+  completedAt     DateTime?
+  totalAmount     Float
+  platformFee     Float
+  notes           String?
+  otp             String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  customer        User           @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  professional    Professional?  @relation("ProfessionalBookings", fields: [professionalId], references: [id], onDelete: SetNull)
+  service         Service        @relation(fields: [serviceId], references: [id])
+  package         ServicePackage? @relation(fields: [packageId], references: [id])
+  address         Address        @relation(fields: [addressId], references: [id])
+  payment         Payment?
+  review          Review?
+  timeline        BookingTimeline[]
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  EN_ROUTE
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  REFUNDED
+}
+
+// ─── PAYMENTS ──────────────────────────────────────────────────────────────
+
+model Payment {
+  id                  String        @id @default(cuid())
+  bookingId           String        @unique
+  razorpayOrderId     String        @unique
+  razorpayPaymentId   String?
+  razorpaySignature   String?
+  amount              Float
+  currency            String        @default("INR")
+  status              PaymentStatus @default(PENDING)
+  method              String?
+  paidAt              DateTime?
+  createdAt           DateTime      @default(now())
+
+  booking             Booking       @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+  REFUNDED
+}
+
+// ─── REVIEWS ───────────────────────────────────────────────────────────────
+
+model Review {
+  id             String   @id @default(cuid())
+  bookingId      String   @unique
+  customerId     String
+  professionalId String
+  rating         Float
+  comment        String?
+  createdAt      DateTime @default(now())
+
+  booking        Booking       @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  customer       User          @relation(fields: [customerId], references: [id], onDelete: Cascade)
+}
+
+// ─── AVAILABILITY ──────────────────────────────────────────────────────────
+
+model Availability {
+  id              String  @id @default(cuid())
+  professionalId  String
+  dayOfWeek       Int
+  startTime       String
+  endTime         String
+  isOff           Boolean @default(false)
+
+  professional    Professional @relation(fields: [professionalId], references: [id], onDelete: Cascade)
+}
+
+// ─── BOOKING TIMELINE ──────────────────────────────────────────────────────
+
+model BookingTimeline {
+  id        String        @id @default(cuid())
+  bookingId String
+  status    BookingStatus
+  note      String?
+  createdAt DateTime      @default(now())
+
+  booking   Booking       @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+}
+
+// ─── SERVICE AREAS ─────────────────────────────────────────────────────────
+
+model ServiceArea {
+  id              String  @id @default(cuid())
+  professionalId  String
+  pincode         String
+  city            String
+
+  professional    Professional @relation(fields: [professionalId], references: [id], onDelete: Cascade)
+}
+
+// ─── NEXTAUTH ──────────────────────────────────────────────────────────────
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+  @@unique([identifier, token])
+}
