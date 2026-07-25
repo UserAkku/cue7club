@@ -18,7 +18,7 @@ export default async function ProRouteLayout({
   }
 
   // Enforce role
-  if (session.user.role !== "PROFESSIONAL" && session.user.role !== "ADMIN") {
+  if ((session.user as any).role !== "PROFESSIONAL" && (session.user as any).role !== "ADMIN") {
     redirect(`/${resolvedParams.locale}/dashboard`); // Redirect to customer dashboard
   }
 
