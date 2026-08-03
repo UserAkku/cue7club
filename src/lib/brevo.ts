@@ -16,7 +16,7 @@ export async function sendEmail(to: string, subject: string, template: React.Rea
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        sender: { name: "Cue7Club", email: "noreply@cue7club.com" },
+        sender: { name: "MadClap", email: "noreply@madclap.com" },
         to: [{ email: to }],
         subject: subject,
         htmlContent: htmlContent,

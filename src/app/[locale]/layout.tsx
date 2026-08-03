@@ -19,7 +19,7 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Cue7Club | Premium Home Services",
+  title: "MadClap | Premium Home Services",
   description:
     "Book premium home services, health & wellness, garden, laundry, and pool cleaning.",
 };

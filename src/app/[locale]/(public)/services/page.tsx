@@ -59,7 +59,7 @@ export default async function ServicesPage() {
                   <div className="font-medium text-foreground">
                     From ₹{service.basePrice}
                   </div>
-                  <Button size="sm" variant="outline">View Details</Button>
+                  <Button size="sm" variant="outline">{t("viewDetails")}</Button>
                 </div>
               </CardContent>
             </Card>

@@ -26,7 +26,7 @@ export async function POST(req: Request) {
     // Send email via Brevo
     if (process.env.BREVO_API_KEY) {
       const template = React.createElement(OtpEmail, { otp });
-      const success = await sendEmail(email, "Your Login Code - Cue7Club", template);
+      const success = await sendEmail(email, "Your Login Code - MadClap", template);
 
       if (!success) {
         console.error("Failed to send OTP via Brevo");

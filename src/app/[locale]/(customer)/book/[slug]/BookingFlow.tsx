@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import { useTranslations } from "next-intl";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { motion, AnimatePresence } from "motion/react";
@@ -21,6 +22,7 @@ export default function BookingFlow({
   packages: Package[]; 
   basePrice: number;
 }) {
+  const t = useTranslations("Booking");
   const router = useRouter();
   const params = useParams();
   const [step, setStep] = useState(1);
@@ -85,7 +87,7 @@ export default function BookingFlow({
         {/* Step 1: Packages */}
         {step === 1 && (
           <motion.div key="step1" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
-            <h2 className="text-xl font-bold mb-4">Select a Package</h2>
+            <h2 className="text-xl font-bold mb-4">{t("selectPackage") || "Select a Package"}</h2>
             {packages.length > 0 ? (
               <div className="grid sm:grid-cols-2 gap-4">
                 {packages.map(pkg => (
@@ -110,7 +112,7 @@ export default function BookingFlow({
               </div>
             ) : (
               <Card className="p-6 border-black/5 rounded-3xl">
-                <p className="font-medium text-lg">Standard Service</p>
+                <p className="font-medium text-lg">{t("standard") || "Standard Service"}</p>
                 <div className="flex items-center text-primary font-bold mt-2">
                   <CurrencyInr size={20} />
                   {basePrice}
@@ -132,7 +134,7 @@ export default function BookingFlow({
             <Card className="p-6 md:p-8 border-black/5 shadow-sm rounded-3xl space-y-6">
               
               <div className="space-y-3">
-                <label className="text-sm font-semibold text-muted-foreground">Select Date</label>
+                <label className="text-sm font-semibold text-muted-foreground">{t("date") || "Select Date"}</label>
                 <div className="relative">
                   <CalendarBlank className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={20} />
                   <input 
@@ -146,7 +148,7 @@ export default function BookingFlow({
               </div>
 
               <div className="space-y-3">
-                <label className="text-sm font-semibold text-muted-foreground">Select Time</label>
+                <label className="text-sm font-semibold text-muted-foreground">{t("time") || "Select Time"}</label>
                 <div className="grid grid-cols-3 gap-3">
                   {["09:00", "11:00", "13:00", "15:00", "17:00"].map(t => (
                     <button
@@ -234,7 +236,7 @@ export default function BookingFlow({
         {/* Step 4: Confirm */}
         {step === 4 && (
           <motion.div key="step4" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
-            <h2 className="text-xl font-bold mb-4">Review your Booking</h2>
+            <h2 className="text-xl font-bold mb-4">{t("reviewPay") || "Review your Booking"}</h2>
             
             <Card className="p-6 border-black/5 shadow-md rounded-3xl overflow-hidden relative">
               <div className="absolute top-0 right-0 p-8 opacity-5">
@@ -260,15 +262,15 @@ export default function BookingFlow({
 
                 <div className="bg-secondary/30 p-4 rounded-2xl">
                   <div className="flex justify-between items-center mb-2">
-                    <span className="text-muted-foreground">Service Total</span>
+                    <span className="text-muted-foreground">{t("serviceTotal") || "Service Total"}</span>
                     <span className="font-medium flex items-center"><CurrencyInr size={14}/> {totalAmount}</span>
                   </div>
                   <div className="flex justify-between items-center mb-3">
-                    <span className="text-muted-foreground">Platform Fee</span>
+                    <span className="text-muted-foreground">{t("platformFee") || "Platform Fee"}</span>
                     <span className="font-medium flex items-center"><CurrencyInr size={14}/> 250</span>
                   </div>
                   <div className="flex justify-between items-center pt-3 border-t border-black/5">
-                    <span className="font-bold">Amount to Pay</span>
+                    <span className="font-bold">{t("amountToPay") || "Amount to Pay"}</span>
                     <span className="font-bold text-lg flex items-center"><CurrencyInr size={18}/> {totalAmount + 250}</span>
                   </div>
                 </div>

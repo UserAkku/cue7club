@@ -36,7 +36,7 @@
     },
     "CtaSection": {
       "heading": "Ready to upgrade your home?",
-      "subheading": "Join thousands of happy customers who trust Cue7Club for all their premium home service needs.",
+      "subheading": "Join thousands of happy customers who trust MadClap for all their premium home service needs.",
       "bookBtn": "Book a Service",
       "proBtn": "Become a Professional"
     }
@@ -58,7 +58,7 @@
     "continueWithGoogle": "Continue with Google",
     "noAccount": "Don't have an account?",
     "createAccount": "Create an account",
-    "howToUse": "How do you want to use Cue7Club?",
+    "howToUse": "How do you want to use MadClap?",
     "chooseAccountType": "Choose your account type to get started.",
     "needService": "I need a service",
     "needServiceDesc": "Book cleaning, gardening, and wellness professionals.",
@@ -100,7 +100,7 @@
     "popular": "POPULAR",
     "premium": "Premium",
     "premiumDesc": "Includes appliance interior cleaning.",
-    "whyChoose": "Why choose Cue7Club?",
+    "whyChoose": "Why choose MadClap?",
     "backgroundVerified": "Background-verified professionals",
     "transparentPricing": "Transparent pricing, no hidden fees",
     "realTimeTracking": "Real-time pro tracking",
@@ -134,7 +134,7 @@
     "processing": "Processing...",
     "goBack": "Go Back",
     "bookingConfirmed": "Booking Confirmed!",
-    "bookingConfirmedDesc": "Thank you for choosing Cue7Club. Your professional has been assigned and will arrive at your scheduled time. You can track their location in your dashboard.",
+    "bookingConfirmedDesc": "Thank you for choosing MadClap. Your professional has been assigned and will arrive at your scheduled time. You can track their location in your dashboard.",
     "goToDashboard": "Go to Dashboard",
     "returnHome": "Return Home"
   },
@@ -264,6 +264,23 @@
     "legal": "Legal",
     "termsOfService": "Terms of Service",
     "privacyPolicy": "Privacy Policy",
-    "copyright": "\u00a9 {year} Cue7Club. All rights reserved."
+    "copyright": "© {year} MadClap. All rights reserved."
+  },
+  "About": {
+    "heading": "We are redefining the standard of home services.",
+    "theMission": "The Mission",
+    "missionDesc": "Your home is your sanctuary. Maintaining it shouldn't require managing unreliable contractors or compromising on quality.",
+    "theStandard": "The Standard",
+    "standardDesc1": "We don't just fix things; we elevate them. Every service provider on our platform goes through a rigorous background check, skill assessment, and continuous quality monitoring to ensure the standard never drops.",
+    "standardDesc2": "Transparent pricing. No hidden fees. No last-minute negotiations. You know exactly what you're paying for before you book, and you get exactly what you expect.",
+    "corePrinciples": "Core Principles",
+    "absoluteTrust": "Absolute Trust",
+    "trustDesc": "Safety and reliability are non-negotiable. We vet every professional so you can invite them into your home with complete peace of mind.",
+    "premiumQuality": "Premium Quality",
+    "qualityDesc": "We focus on the details that others miss. Our standard is perfection, ensuring your space feels brand new after every visit.",
+    "frictionlessExperience": "Frictionless Experience",
+    "frictionlessDesc": "From booking to payment, the entire process is designed to be effortless, giving you back your most valuable asset: time.",
+    "experienceDifference": "Experience the difference.",
+    "exploreServices": "Explore Services"
   }
 }

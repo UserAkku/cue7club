@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
 export default async function AboutPage() {
   const locale = await getLocale();
+  const t = await getTranslations("About");
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
@@ -12,7 +13,7 @@ export default async function AboutPage() {
         {/* Editorial Hero */}
         <div className="pt-32 pb-24 max-w-4xl mx-auto text-center md:pt-40 md:pb-32">
           <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-foreground leading-[1.1]">
-            We are redefining the standard of home services.
+            {t("heading")}
           </h1>
         </div>
 
@@ -21,41 +22,41 @@ export default async function AboutPage() {
           
           <div>
             <h2 className="font-heading text-sm font-semibold tracking-widest uppercase text-muted-foreground mb-8">
-              The Mission
+              {t("theMission")}
             </h2>
             <p className="text-2xl md:text-4xl leading-snug text-foreground font-medium">
-              Your home is your sanctuary. Maintaining it shouldn't require managing unreliable contractors or compromising on quality.
+              {t("missionDesc")}
             </p>
           </div>
 
           <div className="pt-12 border-t border-border">
             <h2 className="font-heading text-sm font-semibold tracking-widest uppercase text-muted-foreground mb-8">
-              The Standard
+              {t("theStandard")}
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-6">
-              We don't just fix things; we elevate them. Every service provider on our platform goes through a rigorous background check, skill assessment, and continuous quality monitoring to ensure the standard never drops.
+              {t("standardDesc1")}
             </p>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-              Transparent pricing. No hidden fees. No last-minute negotiations. You know exactly what you're paying for before you book, and you get exactly what you expect.
+              {t("standardDesc2")}
             </p>
           </div>
 
           <div className="pt-12 border-t border-border">
             <h2 className="font-heading text-sm font-semibold tracking-widest uppercase text-muted-foreground mb-8">
-              Core Principles
+              {t("corePrinciples")}
             </h2>
             <ul className="space-y-10">
               <li>
-                <strong className="block font-heading text-2xl text-foreground mb-3">Absolute Trust</strong>
-                <span className="text-lg md:text-xl text-muted-foreground leading-relaxed">Safety and reliability are non-negotiable. We vet every professional so you can invite them into your home with complete peace of mind.</span>
+                <strong className="block font-heading text-2xl text-foreground mb-3">{t("absoluteTrust")}</strong>
+                <span className="text-lg md:text-xl text-muted-foreground leading-relaxed">{t("trustDesc")}</span>
               </li>
               <li>
-                <strong className="block font-heading text-2xl text-foreground mb-3">Premium Quality</strong>
-                <span className="text-lg md:text-xl text-muted-foreground leading-relaxed">We focus on the details that others miss. Our standard is perfection, ensuring your space feels brand new after every visit.</span>
+                <strong className="block font-heading text-2xl text-foreground mb-3">{t("premiumQuality")}</strong>
+                <span className="text-lg md:text-xl text-muted-foreground leading-relaxed">{t("qualityDesc")}</span>
               </li>
               <li>
-                <strong className="block font-heading text-2xl text-foreground mb-3">Frictionless Experience</strong>
-                <span className="text-lg md:text-xl text-muted-foreground leading-relaxed">From booking to payment, the entire process is designed to be effortless, giving you back your most valuable asset: time.</span>
+                <strong className="block font-heading text-2xl text-foreground mb-3">{t("frictionlessExperience")}</strong>
+                <span className="text-lg md:text-xl text-muted-foreground leading-relaxed">{t("frictionlessDesc")}</span>
               </li>
             </ul>
           </div>
@@ -64,12 +65,12 @@ export default async function AboutPage() {
         {/* Minimal CTA */}
         <div className="max-w-3xl mx-auto pb-40 text-center">
           <h3 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-10">
-            Experience the difference.
+            {t("experienceDifference")}
           </h3>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href={`/${locale}/services`}>
               <Button size="lg" className="h-14 px-10 text-lg rounded-full w-full sm:w-auto">
-                Explore Services
+                {t("exploreServices")}
               </Button>
             </Link>
           </div>

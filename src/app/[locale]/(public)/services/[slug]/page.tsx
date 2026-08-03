@@ -4,8 +4,10 @@ import { Link } from "@/i18n/routing";
 import { CheckCircle, ShieldCheck, MapPin, Clock } from "lucide-react"; // Using lucide for server components
 import { prisma } from "@/lib/db";
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 
 export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const t = await getTranslations("Services");
   const resolvedParams = await params;
   const service = await prisma.service.findUnique({
     where: { slug: resolvedParams.slug },
@@ -45,7 +47,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             <div className="flex items-center gap-6 bg-white shadow-lg p-6 rounded-3xl border border-black/5 animate-in fade-in slide-in-from-right-4 duration-700 delay-200 fill-mode-both">
               <div className="text-right">
                 <div className="text-4xl font-extrabold tracking-tight text-foreground">₹{service.basePrice}</div>
-                <div className="text-sm font-medium text-muted-foreground mt-1">Starting price</div>
+                <div className="text-sm font-medium text-muted-foreground mt-1">{t("startingPrice")}</div>
               </div>
               <Link href={`/book/${service.slug}`}>
                 <Button size="lg" className="h-16 px-10 text-lg font-semibold rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all">
@@ -88,20 +90,20 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </div>
 
             <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-              <h2 className="font-heading text-3xl font-bold tracking-tight mb-10">Service Packages</h2>
+              <h2 className="font-heading text-3xl font-bold tracking-tight mb-10">{t("servicePackages")}</h2>
               <div className="grid gap-8 sm:grid-cols-2">
                 <Card className="p-8 border-black/5 bg-white shadow-sm hover:shadow-md transition-all rounded-3xl">
                   <h3 className="font-bold text-2xl tracking-tight">Standard</h3>
                   <div className="my-6 text-4xl font-extrabold tracking-tight">₹{service.basePrice}</div>
                   <p className="text-base text-muted-foreground mb-8 min-h-[48px]">Perfect for regular home maintenance and upkeep.</p>
-                  <Button variant="outline" className="w-full h-14 font-semibold rounded-2xl border-black/10 hover:bg-secondary">Select Package</Button>
+                  <Button variant="outline" className="w-full h-14 font-semibold rounded-2xl border-black/10 hover:bg-secondary">{t("select")}</Button>
                 </Card>
                 <Card className="p-8 border-primary/20 bg-primary/5 ring-1 ring-primary relative overflow-hidden rounded-3xl shadow-lg">
                   <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-xs font-bold px-4 py-1.5 rounded-bl-xl tracking-wider uppercase">POPULAR</div>
                   <h3 className="font-bold text-2xl tracking-tight">Premium</h3>
                   <div className="my-6 text-4xl font-extrabold tracking-tight">₹{service.basePrice + 2000}</div>
                   <p className="text-base text-muted-foreground mb-8 min-h-[48px]">Includes advanced sanitization.</p>
-                  <Button className="w-full h-14 font-semibold rounded-2xl shadow-md">Select Package</Button>
+                  <Button className="w-full h-14 font-semibold rounded-2xl shadow-md">{t("select")}</Button>
                 </Card>
               </div>
             </div>
@@ -111,14 +113,14 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             <div className="sticky top-28 animate-in fade-in slide-in-from-right-4 duration-700 delay-200 fill-mode-both">
               <Card className="p-8 border-black/5 rounded-3xl shadow-xl bg-white relative overflow-hidden">
                 <div className="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 rounded-full bg-primary/5 blur-3xl" />
-                <h3 className="font-heading text-xl font-bold tracking-tight mb-6 relative z-10">Why choose Cue7Club?</h3>
+                <h3 className="font-heading text-xl font-bold tracking-tight mb-6 relative z-10">Why choose MadClap?</h3>
                 <ul className="space-y-6 relative z-10">
                   <li className="flex gap-4">
                     <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
                       <ShieldCheck size={14} />
                     </div>
                     <div>
-                      <h5 className="font-semibold text-foreground">Verified Professionals</h5>
+                      <h5 className="font-semibold text-foreground">{t("backgroundVerified")}</h5>
                       <p className="text-sm text-muted-foreground mt-1">Strict background checks on all staff.</p>
                     </div>
                   </li>
@@ -127,7 +129,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       <CheckCircle size={14} />
                     </div>
                     <div>
-                      <h5 className="font-semibold text-foreground">Transparent Pricing</h5>
+                      <h5 className="font-semibold text-foreground">{t("transparentPricing")}</h5>
                       <p className="text-sm text-muted-foreground mt-1">No hidden fees or surprise charges.</p>
                     </div>
                   </li>

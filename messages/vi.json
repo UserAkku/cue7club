@@ -36,7 +36,7 @@
     },
     "CtaSection": {
       "heading": "S\u1eb5n s\u00e0ng n\u00e2ng c\u1ea5p ng\u00f4i nh\u00e0 c\u1ee7a b\u1ea1n?",
-      "subheading": "Tham gia c\u00f9ng h\u00e0ng ng\u00e0n kh\u00e1ch h\u00e0ng h\u00e0i l\u00f2ng tin t\u01b0\u1edfng Cue7Club cho m\u1ecdi nhu c\u1ea7u d\u1ecbch v\u1ee5 gia \u0111\u00ecnh cao c\u1ea5p c\u1ee7a h\u1ecd.",
+      "subheading": "Tham gia c\u00f9ng h\u00e0ng ng\u00e0n kh\u00e1ch h\u00e0ng h\u00e0i l\u00f2ng tin t\u01b0\u1edfng MadClap cho m\u1ecdi nhu c\u1ea7u d\u1ecbch v\u1ee5 gia \u0111\u00ecnh cao c\u1ea5p c\u1ee7a h\u1ecd.",
       "bookBtn": "\u0110\u1eb7t D\u1ecbch v\u1ee5",
       "proBtn": "Tr\u1edf th\u00e0nh Chuy\u00ean gia"
     }
@@ -58,7 +58,7 @@
     "continueWithGoogle": "Ti\u1ebfp t\u1ee5c v\u1edbi Google",
     "noAccount": "Ch\u01b0a c\u00f3 t\u00e0i kho\u1ea3n?",
     "createAccount": "T\u1ea1o t\u00e0i kho\u1ea3n",
-    "howToUse": "B\u1ea1n mu\u1ed1n s\u1eed d\u1ee5ng Cue7Club nh\u01b0 th\u1ebf n\u00e0o?",
+    "howToUse": "B\u1ea1n mu\u1ed1n s\u1eed d\u1ee5ng MadClap nh\u01b0 th\u1ebf n\u00e0o?",
     "chooseAccountType": "Ch\u1ecdn lo\u1ea1i t\u00e0i kho\u1ea3n c\u1ee7a b\u1ea1n \u0111\u1ec3 b\u1eaft \u0111\u1ea7u.",
     "needService": "T\u00f4i c\u1ea7n d\u1ecbch v\u1ee5",
     "needServiceDesc": "\u0110\u1eb7t l\u1ecbch v\u1edbi c\u00e1c chuy\u00ean gia d\u1ecdn d\u1eb9p, l\u00e0m v\u01b0\u1eddn v\u00e0 ch\u0103m s\u00f3c s\u1ee9c kh\u1ecfe.",
@@ -100,7 +100,7 @@
     "popular": "PH\u1ed4 BI\u1ebeN",
     "premium": "Cao c\u1ea5p",
     "premiumDesc": "Bao g\u1ed3m l\u00e0m s\u1ea1ch b\u00ean trong thi\u1ebft b\u1ecb.",
-    "whyChoose": "T\u1ea1i sao ch\u1ecdn Cue7Club?",
+    "whyChoose": "T\u1ea1i sao ch\u1ecdn MadClap?",
     "backgroundVerified": "C\u00e1c chuy\u00ean gia \u0111\u00e3 \u0111\u01b0\u1ee3c x\u00e1c minh l\u00fd l\u1ecbch",
     "transparentPricing": "Gi\u00e1 c\u1ea3 minh b\u1ea1ch, kh\u00f4ng c\u00f3 ph\u00ed \u1ea9n",
     "realTimeTracking": "Theo d\u00f5i chuy\u00ean gia theo th\u1eddi gian th\u1ef1c",
@@ -134,7 +134,7 @@
     "processing": "\u0110ang x\u1eed l\u00fd...",
     "goBack": "Quay l\u1ea1i",
     "bookingConfirmed": "\u0110\u00e3 x\u00e1c nh\u1eadn \u0111\u1eb7t l\u1ecbch!",
-    "bookingConfirmedDesc": "C\u1ea3m \u01a1n b\u1ea1n \u0111\u00e3 ch\u1ecdn Cue7Club. Chuy\u00ean gia c\u1ee7a b\u1ea1n \u0111\u00e3 \u0111\u01b0\u1ee3c ch\u1ec9 \u0111\u1ecbnh v\u00e0 s\u1ebd \u0111\u1ebfn v\u00e0o th\u1eddi gian b\u1ea1n \u0111\u00e3 l\u00ean l\u1ecbch. B\u1ea1n c\u00f3 th\u1ec3 theo d\u00f5i v\u1ecb tr\u00ed c\u1ee7a h\u1ecd trong b\u1ea3ng \u0111i\u1ec1u khi\u1ec3n.",
+    "bookingConfirmedDesc": "C\u1ea3m \u01a1n b\u1ea1n \u0111\u00e3 ch\u1ecdn MadClap. Chuy\u00ean gia c\u1ee7a b\u1ea1n \u0111\u00e3 \u0111\u01b0\u1ee3c ch\u1ec9 \u0111\u1ecbnh v\u00e0 s\u1ebd \u0111\u1ebfn v\u00e0o th\u1eddi gian b\u1ea1n \u0111\u00e3 l\u00ean l\u1ecbch. B\u1ea1n c\u00f3 th\u1ec3 theo d\u00f5i v\u1ecb tr\u00ed c\u1ee7a h\u1ecd trong b\u1ea3ng \u0111i\u1ec1u khi\u1ec3n.",
     "goToDashboard": "\u0110\u1ebfn B\u1ea3ng \u0111i\u1ec1u khi\u1ec3n",
     "returnHome": "Tr\u1edf v\u1ec1 Trang ch\u1ee7"
   },
@@ -264,6 +264,23 @@
     "legal": "Ph\u00e1p l\u00fd",
     "termsOfService": "\u0110i\u1ec1u kho\u1ea3n D\u1ecbch v\u1ee5",
     "privacyPolicy": "Ch\u00ednh s\u00e1ch B\u1ea3o m\u1eadt",
-    "copyright": "\u00a9 {year} Cue7Club. M\u1ecdi quy\u1ec1n \u0111\u01b0\u1ee3c b\u1ea3o l\u01b0u."
+    "copyright": "\u00a9 {year} MadClap. M\u1ecdi quy\u1ec1n \u0111\u01b0\u1ee3c b\u1ea3o l\u01b0u."
+  },
+  "About": {
+    "heading": "Chúng tôi đang tái định nghĩa tiêu chuẩn của dịch vụ gia đình.",
+    "theMission": "Sứ mệnh",
+    "missionDesc": "Ngôi nhà là nơi tôn nghiêm của bạn. Việc bảo trì nó không nên đòi hỏi phải quản lý các nhà thầu không đáng tin cậy hoặc thỏa hiệp về chất lượng.",
+    "theStandard": "Tiêu chuẩn",
+    "standardDesc1": "Chúng tôi không chỉ sửa chữa mọi thứ; chúng tôi nâng tầm chúng. Mọi nhà cung cấp dịch vụ trên nền tảng của chúng tôi đều trải qua quá trình kiểm tra lý lịch nghiêm ngặt, đánh giá kỹ năng và giám sát chất lượng liên tục để đảm bảo tiêu chuẩn không bao giờ giảm sút.",
+    "standardDesc2": "Giá cả minh bạch. Không có phí ẩn. Không có thương lượng phút chót. Bạn biết chính xác mình đang trả tiền cho cái gì trước khi đặt chỗ, và bạn nhận được chính xác những gì bạn mong đợi.",
+    "corePrinciples": "Nguyên tắc cốt lõi",
+    "absoluteTrust": "Niềm tin tuyệt đối",
+    "trustDesc": "Sự an toàn và độ tin cậy là không thể thương lượng. Chúng tôi xem xét kỹ lưỡng mọi chuyên gia để bạn có thể mời họ vào nhà mình với sự an tâm hoàn toàn.",
+    "premiumQuality": "Chất lượng cao cấp",
+    "qualityDesc": "Chúng tôi tập trung vào những chi tiết mà những người khác bỏ sót. Tiêu chuẩn của chúng tôi là sự hoàn hảo, đảm bảo không gian của bạn có cảm giác như mới sau mỗi lần ghé thăm.",
+    "frictionlessExperience": "Trải nghiệm không ma sát",
+    "frictionlessDesc": "Từ lúc đặt chỗ đến lúc thanh toán, toàn bộ quy trình được thiết kế để không tốn chút sức lực nào, trả lại cho bạn tài sản quý giá nhất: thời gian.",
+    "experienceDifference": "Trải nghiệm sự khác biệt.",
+    "exploreServices": "Khám phá các dịch vụ"
   }
 }

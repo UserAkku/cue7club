@@ -46,7 +46,7 @@ export default function ProProfilePage() {
                   <div className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                     <EnvelopeSimple size={16} /> Email
                   </div>
-                  <p className="font-medium">john.doe@pro.cue7club.com</p>
+                  <p className="font-medium">john.doe@pro.madclap.com</p>
                 </div>
                 <div className="space-y-1">
                   <div className="text-sm font-medium text-muted-foreground flex items-center gap-2">
@@ -65,7 +65,7 @@ export default function ProProfilePage() {
           </div>
           
           <div className="mt-8 pt-8 border-t border-black/5 flex justify-end">
-            <Button variant="outline" className="rounded-full px-6">Edit Profile Details</Button>
+            <Button variant="outline" className="rounded-full px-6">{t("editProfile") || "Edit Profile Details"}</Button>
           </div>
         </Card>
 

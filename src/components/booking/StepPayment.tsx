@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/Button";
+import { useTranslations } from "next-intl";
 import { Card } from "@/components/ui/Card";
 import { ShieldCheck, CurrencyInr } from "@phosphor-icons/react";
 
@@ -10,6 +11,7 @@ declare global {
 }
 
 export function StepPayment({ bookingData, serviceId, onBack, onSuccess }: any) {
+  const t = useTranslations("Booking");
   const [loading, setLoading] = useState(false);
   const [scriptLoaded, setScriptLoaded] = useState(false);
 
@@ -52,7 +54,7 @@ export function StepPayment({ bookingData, serviceId, onBack, onSuccess }: any) 
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "dummy", // Should be in env
         amount: order.amount,
         currency: order.currency,
-        name: "Cue7Club",
+        name: "MadClap",
         description: "Premium Service Booking",
         order_id: order.id,
         handler: async function (response: any) {
@@ -99,7 +101,7 @@ export function StepPayment({ bookingData, serviceId, onBack, onSuccess }: any) 
       <div className="flex flex-col md:flex-row gap-8">
         <div className="flex-1 space-y-6">
           <Card className="p-6 border-white/5">
-            <h3 className="font-semibold text-lg border-b border-white/10 pb-4 mb-4">Order Summary</h3>
+            <h3 className="font-semibold text-lg border-b border-white/10 pb-4 mb-4">{t("orderSummary")}</h3>
             <div className="space-y-3 text-sm">
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Package</span>
@@ -117,7 +119,7 @@ export function StepPayment({ bookingData, serviceId, onBack, onSuccess }: any) 
             
             <div className="mt-6 pt-6 border-t border-white/10">
               <div className="flex justify-between items-center text-lg font-bold">
-                <span>Total Amount</span>
+                <span>{t("totalAmount")}</span>
                 <span className="flex items-center"><CurrencyInr size={20} />{price}</span>
               </div>
             </div>
@@ -127,7 +129,7 @@ export function StepPayment({ bookingData, serviceId, onBack, onSuccess }: any) 
         <div className="md:w-[320px] shrink-0">
           <Card className="p-6 border-primary bg-primary/5 text-center h-full flex flex-col justify-center">
             <ShieldCheck size={48} className="mx-auto text-primary mb-4" weight="duotone" />
-            <h4 className="font-semibold text-lg mb-2">Secure Payment</h4>
+            <h4 className="font-semibold text-lg mb-2">{t("securePayment")}</h4>
             <p className="text-sm text-muted-foreground mb-6">Your payment is processed securely via Razorpay. We do not store card details.</p>
             
             <div className="mt-auto flex flex-col gap-3">

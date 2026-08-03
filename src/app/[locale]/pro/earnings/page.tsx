@@ -38,7 +38,7 @@ export default function EarningsPage() {
           <Card className="p-8 border-black/5 bg-gradient-to-br from-primary/10 to-primary/5 hover:from-primary/15 hover:to-primary/10 transition-colors rounded-3xl shadow-sm h-full flex flex-col justify-center">
             <div className="flex items-center gap-3 mb-4 text-primary font-medium">
               <CurrencyInr size={24} weight="duotone" />
-              <span>Available Balance</span>
+              <span>{t("availableBalance") || "Available Balance"}</span>
             </div>
             <h2 className="font-heading text-5xl font-bold tracking-tight mb-2">₹12,450</h2>
             <p className="text-sm text-muted-foreground">Ready to be withdrawn to your bank account.</p>
@@ -62,7 +62,7 @@ export default function EarningsPage() {
       </div>
 
       <div>
-        <h2 className="font-heading text-2xl font-semibold tracking-tight mb-6">Recent Transactions</h2>
+        <h2 className="font-heading text-2xl font-semibold tracking-tight mb-6">{t("recentTransactions") || "Recent Transactions"}</h2>
         <Card className="border-black/5 bg-white shadow-sm rounded-3xl overflow-hidden">
           <div className="divide-y divide-black/5">
             {transactions.map((tx, i) => {

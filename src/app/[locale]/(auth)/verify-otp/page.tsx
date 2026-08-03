@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, Suspense } from "react";
+import { useTranslations } from "next-intl";
 import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/Button";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -9,6 +10,7 @@ import Link from "next/link";
 import { ArrowLeft } from "@phosphor-icons/react";
 
 function VerifyOtpContent() {
+  const t = useTranslations("Auth");
   const [otp, setOtp] = useState("");
   const [loading, setLoading] = useState(false);
   const searchParams = useSearchParams();
@@ -51,7 +53,7 @@ function VerifyOtpContent() {
       <div className="text-center">
         <p>Invalid request.</p>
         <Link href={`/${locale}/login`}>
-          <Button className="mt-4">Go back to Login</Button>
+          <Button className="mt-4">{t("goBackToLogin") || "Go back to Login"}</Button>
         </Link>
       </div>
     );
@@ -61,7 +63,7 @@ function VerifyOtpContent() {
     <div className="flex min-h-[100dvh] w-full flex-col items-center justify-center bg-background px-4">
       <Link href={`/${locale}/login`} className="absolute left-8 top-8 flex items-center gap-2 text-muted-foreground hover:text-foreground">
         <ArrowLeft size={20} />
-        <span className="text-sm font-medium">Back to login</span>
+        <span className="text-sm font-medium">{t("backToLogin") || "Back to login"}</span>
       </Link>
 
       <div className="w-full max-w-sm">
@@ -109,6 +111,7 @@ function VerifyOtpContent() {
 }
 
 export default function VerifyOtpPage() {
+  const t = useTranslations("Auth");
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <VerifyOtpContent />

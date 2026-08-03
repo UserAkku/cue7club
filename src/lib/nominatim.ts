@@ -4,7 +4,7 @@ export async function reverseGeocode(lat: number, lng: number): Promise<string> 
       `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1`,
       {
         headers: {
-          'User-Agent': 'Cue7Club/1.0', // Required by Nominatim policy
+          'User-Agent': 'MadClap/1.0', // Required by Nominatim policy
         },
       }
     );

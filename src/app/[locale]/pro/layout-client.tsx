@@ -29,9 +29,9 @@ export default function ProfessionalLayout({ children }: { children: React.React
         <div className="flex h-16 shrink-0 items-center justify-between px-4 border-b border-black/5">
           <Link href="/" className={`flex items-center gap-2 overflow-hidden \${isCollapsed ? 'justify-center w-full' : ''}`}>
             <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary font-heading font-bold text-primary-foreground">
-              C7
+              MC
             </div>
-            {!isCollapsed && <span className="font-heading text-lg font-bold tracking-tight whitespace-nowrap">Pro Partner</span>}
+            {!isCollapsed && <span className="font-heading text-lg font-bold tracking-tight whitespace-nowrap">{t("proPartner") || "Pro Partner"}</span>}
           </Link>
         </div>
         
@@ -80,7 +80,7 @@ export default function ProfessionalLayout({ children }: { children: React.React
             title={isCollapsed ? "Sign Out" : undefined}
           >
             <SignOut size={24} className="shrink-0" />
-            {!isCollapsed && <span className="whitespace-nowrap">Sign Out</span>}
+            {!isCollapsed && <span className="whitespace-nowrap">{t("signOut")}</span>}
           </button>
         </div>
       </aside>
@@ -95,7 +95,7 @@ export default function ProfessionalLayout({ children }: { children: React.React
             >
               <ArrowLeft size={20} />
             </button>
-            <span className="font-heading text-lg font-bold">Pro Dashboard</span>
+            <span className="font-heading text-lg font-bold">{t("proDashboard") || "Pro Dashboard"}</span>
           </div>
         </header>
         

@@ -2,14 +2,10 @@
 
 import { useEffect } from "react";
 import { Button } from "@/components/ui/Button";
+import { useTranslations } from "next-intl";
 
-export default function GlobalError({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) {
+export default function GlobalError({ error, reset }: { error: Error & { digest?: string }, reset: () => void }) {
+  const t = useTranslations("Common");
   useEffect(() => {
     // Log the error to an error reporting service
     console.error(error);
@@ -25,7 +21,7 @@ export default function GlobalError({
           <p className="text-muted-foreground mb-8">
             An unexpected error occurred. We've been notified.
           </p>
-          <Button onClick={() => reset()}>Try again</Button>
+          <Button onClick={() => reset()}>{t("retry") || "Try again"}</Button>
         </div>
       </body>
     </html>

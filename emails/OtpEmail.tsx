@@ -9,12 +9,12 @@ export default function OtpEmail({ otp }: OtpEmailProps) {
   return (
     <Html>
       <Head />
-      <Preview>Your Cue7Club Login Code is {otp}</Preview>
+      <Preview>Your MadClap Login Code is {otp}</Preview>
       <Body style={main}>
         <Container style={container}>
-          <Heading style={h1}>Cue7Club</Heading>
+          <Heading style={h1}>MadClap</Heading>
           <Text style={text}>
-            Here is your one-time password (OTP) to sign in to your Cue7Club account:
+            Here is your one-time password (OTP) to sign in to your MadClap account:
           </Text>
           
           <Section style={codeBox}>
@@ -28,7 +28,7 @@ export default function OtpEmail({ otp }: OtpEmailProps) {
           <Hr style={hr} />
           
           <Text style={footer}>
-            © {new Date().getFullYear()} Cue7Club. All rights reserved.
+            © {new Date().getFullYear()} MadClap. All rights reserved.
           </Text>
         </Container>
       </Body>

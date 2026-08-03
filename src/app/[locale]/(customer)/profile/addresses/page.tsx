@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
+import { useTranslations } from "next-intl";
 import { MapPin, Plus, Trash } from "@phosphor-icons/react/dist/ssr";
 
 const mockAddresses = [
@@ -12,11 +13,12 @@ const mockAddresses = [
 ];
 
 export default function AddressesPage() {
+  const t = useTranslations("Dashboard");
   return (
     <div className="max-w-3xl">
       <div className="mb-8 flex items-center justify-between">
         <div>
-          <h1 className="font-heading text-3xl font-bold tracking-tight">Saved Addresses</h1>
+          <h1 className="font-heading text-3xl font-bold tracking-tight">{t("savedAddresses") || "Saved Addresses"}</h1>
           <p className="text-muted-foreground mt-2">Manage locations for your service bookings.</p>
         </div>
         <Button className="hidden sm:flex items-center gap-2">

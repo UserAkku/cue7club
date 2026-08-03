@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/Button";
+import { useTranslations } from "next-intl";
 
 export function StepDateTime({ date, timeSlot, onSelect, onNext, onBack }: any) {
+  const t = useTranslations("Booking");
   // Mock dates for next 3 days
   const dates = [
     { id: "today", label: "Today", date: "Oct 25" },
@@ -47,7 +49,7 @@ export function StepDateTime({ date, timeSlot, onSelect, onNext, onBack }: any) 
 
       <div className="flex gap-4">
         <Button variant="outline" onClick={onBack}>Back</Button>
-        <Button onClick={onNext} disabled={!date || !timeSlot} className="flex-1">Continue to Address</Button>
+        <Button onClick={onNext} disabled={!date || !timeSlot} className="flex-1">{t("continueToAddress")}</Button>
       </div>
     </div>
   );

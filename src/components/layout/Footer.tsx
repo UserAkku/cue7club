@@ -17,10 +17,10 @@ export async function Footer() {
           <div className="space-y-4">
             <Link href={`/${locale}`} className="flex items-center gap-2">
               <div className="flex h-8 w-8 items-center justify-center rounded-none bg-primary font-heading font-bold text-primary-foreground text-sm">
-                C7
+                MC
               </div>
               <span className="font-heading text-lg font-bold tracking-tight">
-                Cue7Club
+                MadClap
               </span>
             </Link>
             <p className="text-sm text-muted-foreground">

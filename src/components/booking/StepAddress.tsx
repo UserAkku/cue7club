@@ -2,12 +2,14 @@ import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { MapPin, Plus } from "@phosphor-icons/react";
+import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 
 // Dynamic import Leaflet map to avoid SSR window errors
 const AddressPinMap = dynamic(() => import("../map/AddressPinMap"), { ssr: false });
 
 export function StepAddress({ addressId, addressDetails, onSelect, onNext, onBack }: any) {
+  const t = useTranslations("Booking");
   const [showMap, setShowMap] = useState(false);
 
   // Mock saved addresses
@@ -24,7 +26,7 @@ export function StepAddress({ addressId, addressDetails, onSelect, onNext, onBac
     return (
       <div className="h-full flex flex-col">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="font-heading text-xl font-bold">Pin your location</h2>
+          <h2 className="font-heading text-xl font-bold">{t("pinLocation")}</h2>
           <Button variant="ghost" size="sm" onClick={() => setShowMap(false)}>Cancel</Button>
         </div>
         <div className="flex-1 min-h-[300px] rounded-xl overflow-hidden border border-white/10">
@@ -36,7 +38,7 @@ export function StepAddress({ addressId, addressDetails, onSelect, onNext, onBac
 
   return (
     <div>
-      <h2 className="font-heading text-2xl font-bold mb-6">Service Address</h2>
+      <h2 className="font-heading text-2xl font-bold mb-6">{t("serviceAddress")}</h2>
       
       <div className="space-y-4 mb-8">
         {savedAddresses.map((addr) => (
@@ -55,7 +57,7 @@ export function StepAddress({ addressId, addressDetails, onSelect, onNext, onBac
           <Card className="flex items-start p-4 border-primary ring-1 ring-primary">
             <MapPin size={24} className="mr-4 mt-1 text-primary" weight="fill" />
             <div>
-              <h4 className="font-semibold">New Location</h4>
+              <h4 className="font-semibold">{t("newLocation")}</h4>
               <p className="text-sm text-muted-foreground mt-1">{addressDetails.text}</p>
             </div>
           </Card>
@@ -66,14 +68,14 @@ export function StepAddress({ addressId, addressDetails, onSelect, onNext, onBac
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-primary group-hover:bg-primary/20 transition-colors">
               <Plus size={20} />
             </div>
-            <span className="ml-4 font-medium text-foreground">Add new address via Map</span>
+            <span className="ml-4 font-medium text-foreground">{t("addNewAddressMap")}</span>
           </Card>
         </button>
       </div>
 
       <div className="flex gap-4">
         <Button variant="outline" onClick={onBack}>Back</Button>
-        <Button onClick={onNext} disabled={!addressId} className="flex-1">Continue to Payment</Button>
+        <Button onClick={onNext} disabled={!addressId} className="flex-1">{t("continueToPayment")}</Button>
       </div>
     </div>
   );

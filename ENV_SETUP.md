@@ -1,6 +1,6 @@
-# Cue7Club Environment Setup Guide
+# MadClap Environment Setup Guide
 
-To run Cue7Club locally or in production, you need to configure several third-party services. This guide explains how to get the keys for your `.env` file.
+To run MadClap locally or in production, you need to configure several third-party services. This guide explains how to get the keys for your `.env` file.
 
 ## 1. Database (Neon & Prisma)
 1. Go to [Neon.tech](https://neon.tech) and create a project.

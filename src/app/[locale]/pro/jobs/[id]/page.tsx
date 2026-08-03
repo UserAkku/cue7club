@@ -122,8 +122,8 @@ export default function JobDetailPage() {
                 >
                   <div className="mb-6 flex flex-col items-center text-center rounded-2xl bg-warning/10 p-5 text-sm text-warning border border-warning/20">
                     <div className="h-3 w-3 rounded-full bg-warning animate-ping mb-2" />
-                    <p className="font-semibold tracking-wide uppercase text-xs">Live Location Sharing Active</p>
-                    <p className="text-muted-foreground mt-1">Customer can track your arrival</p>
+                    <p className="font-semibold tracking-wide uppercase text-xs">{t("locationSharingActive") || "Live Location Sharing Active"}</p>
+                    <p className="text-muted-foreground mt-1">{t("customerTrackArrival") || "Customer can track your arrival"}</p>
                   </div>
                   <Button 
                     className="w-full h-14 text-base font-semibold rounded-2xl shadow-md hover:shadow-lg transition-all" 
@@ -157,7 +157,7 @@ export default function JobDetailPage() {
                   <div className="h-12 w-12 rounded-full bg-success/20 text-success flex items-center justify-center mx-auto mb-3">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                   </div>
-                  <div className="text-success font-bold text-lg tracking-tight">Job Completed</div>
+                  <div className="text-success font-bold text-lg tracking-tight">{t("jobCompletedSuccess") || "Job Completed"}</div>
                   <p className="text-success/80 text-sm mt-1">Great work!</p>
                 </motion.div>
               )}
