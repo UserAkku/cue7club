@@ -10,7 +10,10 @@ import { PhoneCall, ChatText, MapPin, NavigationArrow } from "@phosphor-icons/re
 import { useLocationSharing } from "@/hooks/useLocationSharing";
 import { motion } from "motion/react";
 
+import { useTranslations } from "next-intl";
+
 export default function JobDetailPage() {
+  const t = useTranslations("ProDashboard");
   const params = useParams();
   const bookingId = params.id as string;
   
@@ -29,7 +32,7 @@ export default function JobDetailPage() {
       >
         <div>
           <div className="flex items-center gap-3 mb-2">
-            <h1 className="font-heading text-4xl font-bold tracking-tight">Job #{bookingId}</h1>
+            <h1 className="font-heading text-4xl font-bold tracking-tight">{t("job")}{bookingId}</h1>
             <Badge variant="outline" className={`text-sm px-3 py-1 uppercase tracking-wider ${
               status === "COMPLETED" ? "text-success border-success/30" : 
               status === "EN_ROUTE" ? "text-warning border-warning/30 bg-warning/5" : 
@@ -51,7 +54,7 @@ export default function JobDetailPage() {
             transition={{ duration: 0.5, delay: 0.1 }}
           >
             <Card className="p-8 border-white/5 bg-secondary/10 shadow-none rounded-3xl">
-              <h2 className="font-heading text-xl font-semibold tracking-tight mb-6">Customer Details</h2>
+              <h2 className="font-heading text-xl font-semibold tracking-tight mb-6">{t("customerDetails")}</h2>
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                 <div className="flex items-center gap-4">
                   <Avatar fallback="PS" size="lg" className="h-14 w-14 border border-white/10 shadow-sm bg-primary/20 text-primary" />
@@ -75,7 +78,7 @@ export default function JobDetailPage() {
           >
             <Card className="p-8 border-white/5 bg-secondary/10 shadow-none rounded-3xl">
               <h2 className="font-heading text-xl font-semibold tracking-tight mb-6 flex items-center gap-2">
-                <MapPin className="text-primary" weight="fill" /> Service Location
+                <MapPin className="text-primary" weight="fill" /> {t("serviceLocation")}
               </h2>
               <p className="text-foreground text-lg mb-6">123 Green Park, Block B, New Delhi, 110016</p>
               
@@ -86,7 +89,7 @@ export default function JobDetailPage() {
                   <div className="bg-primary/20 p-4 rounded-full backdrop-blur-md border border-primary/30">
                     <NavigationArrow size={28} className="text-primary" weight="fill" />
                   </div>
-                  <Button variant="secondary" className="rounded-full font-medium shadow-lg backdrop-blur-lg bg-background/80 hover:bg-background border border-white/10">Open in Google Maps</Button>
+                  <Button variant="secondary" className="rounded-full font-medium shadow-lg backdrop-blur-lg bg-background/80 hover:bg-background border border-white/10">{t("openInMaps")}</Button>
                 </div>
               </div>
             </Card>
@@ -100,7 +103,7 @@ export default function JobDetailPage() {
           transition={{ duration: 0.5, delay: 0.3 }}
         >
           <Card className="p-8 border-white/10 bg-secondary/20 shadow-xl rounded-3xl sticky top-24 backdrop-blur-xl">
-            <h3 className="font-heading text-xl font-semibold tracking-tight mb-8">Job Actions</h3>
+            <h3 className="font-heading text-xl font-semibold tracking-tight mb-8">{t("jobActions")}</h3>
             
             <div className="space-y-4">
               {status === "CONFIRMED" && (
@@ -108,7 +111,7 @@ export default function JobDetailPage() {
                   className="w-full h-14 text-base font-semibold rounded-2xl shadow-md hover:shadow-lg transition-all" 
                   onClick={() => setStatus("EN_ROUTE")}
                 >
-                  Start Journey
+                  {t("startJourney")}
                 </Button>
               )}
               
@@ -126,7 +129,7 @@ export default function JobDetailPage() {
                     className="w-full h-14 text-base font-semibold rounded-2xl shadow-md hover:shadow-lg transition-all" 
                     onClick={() => setStatus("ARRIVED")}
                   >
-                    Mark as Arrived
+                    {t("markAsArrived")}
                   </Button>
                 </motion.div>
               )}
@@ -140,7 +143,7 @@ export default function JobDetailPage() {
                     className="w-full h-14 text-base font-semibold rounded-2xl bg-success hover:bg-success/90 text-white shadow-md transition-all" 
                     onClick={() => setStatus("COMPLETED")}
                   >
-                    Complete Job
+                    {t("completeJob")}
                   </Button>
                 </motion.div>
               )}
@@ -164,11 +167,11 @@ export default function JobDetailPage() {
 
             <div className="space-y-4 text-sm">
               <div className="flex justify-between items-center p-3 rounded-xl bg-background/50 border border-white/5">
-                <span className="text-muted-foreground font-medium">Estimated Earnings</span>
+                <span className="text-muted-foreground font-medium">{t("estimatedEarnings")}</span>
                 <span className="font-bold text-success text-base tracking-wide">₹1,499</span>
               </div>
               <div className="flex justify-between items-center px-3 py-2">
-                <span className="text-muted-foreground">Payment Mode</span>
+                <span className="text-muted-foreground">{t("paymentMode")}</span>
                 <span className="font-medium">Online (Pre-paid)</span>
               </div>
             </div>

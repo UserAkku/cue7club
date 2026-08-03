@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/Card";
 import { Sparkle, CurrencyInr, Star } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/Button";
 import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { Session } from "next-auth";
 
@@ -16,10 +17,11 @@ export default function DashboardClient({
   stats: { activeCount: number; totalSpent: number; loyaltyPoints: number };
   upcomingBookings: any[];
 }) {
+  const t = useTranslations("Dashboard");
   const displayStats = [
-    { label: "Active Bookings", value: stats.activeCount.toString(), icon: Sparkle, color: "text-primary", bg: "bg-primary/5" },
-    { label: "Total Spent", value: `₹${stats.totalSpent.toLocaleString()}`, icon: CurrencyInr, color: "text-success", bg: "bg-success/5" },
-    { label: "Loyalty Points", value: stats.loyaltyPoints.toString(), icon: Star, color: "text-warning", bg: "bg-warning/5" },
+    { label: t("activeBookings"), value: stats.activeCount.toString(), icon: Sparkle, color: "text-primary", bg: "bg-primary/5" },
+    { label: t("totalSpent"), value: `₹${stats.totalSpent.toLocaleString()}`, icon: CurrencyInr, color: "text-success", bg: "bg-success/5" },
+    { label: t("loyaltyPoints"), value: stats.loyaltyPoints.toString(), icon: Star, color: "text-warning", bg: "bg-warning/5" },
   ];
 
   return (
@@ -31,9 +33,9 @@ export default function DashboardClient({
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       >
         <h1 className="font-heading text-4xl font-bold tracking-tight mb-2">
-          Welcome back, {session?.user?.name || session?.user?.email?.split("@")[0] || "Guest"}
+          {t("welcomeBack")}, {session?.user?.name || session?.user?.email?.split("@")[0] || "Guest"}
         </h1>
-        <p className="text-muted-foreground text-lg">Here's what's happening with your home services.</p>
+        <p className="text-muted-foreground text-lg">{t("heresWhatHappening")}</p>
       </motion.div>
 
       <div className="grid gap-6 sm:grid-cols-3 mb-12">
@@ -67,8 +69,8 @@ export default function DashboardClient({
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <div className="flex items-center justify-between mb-6">
-            <h2 className="font-heading text-2xl font-semibold tracking-tight">Upcoming Services</h2>
-            <Link href="/bookings" className="text-sm text-primary hover:text-primary/80 transition-colors font-medium">View All →</Link>
+            <h2 className="font-heading text-2xl font-semibold tracking-tight">{t("upcomingServices")}</h2>
+            <Link href="/bookings" className="text-sm text-primary hover:text-primary/80 transition-colors font-medium">{t("viewAll")} →</Link>
           </div>
           
           <div className="space-y-4">
@@ -91,7 +93,7 @@ export default function DashboardClient({
                     )}
                   </div>
                   <Link href={`/bookings/${booking.id}`}>
-                    <Button size="lg" className="w-full sm:w-auto font-medium rounded-full shadow-sm">View Details</Button>
+                    <Button size="lg" className="w-full sm:w-auto font-medium rounded-full shadow-sm">{t("viewDetails")}</Button>
                   </Link>
                 </Card>
               ))
@@ -100,10 +102,10 @@ export default function DashboardClient({
                 <div className="h-16 w-16 bg-secondary/50 rounded-full flex items-center justify-center mb-4">
                   <Sparkle className="text-muted-foreground" size={32} />
                 </div>
-                <h3 className="font-heading text-lg font-semibold mb-2">No upcoming services</h3>
+                <h3 className="font-heading text-lg font-semibold mb-2">{t("noUpcomingServices") || "No upcoming services"}</h3>
                 <p className="text-muted-foreground text-sm max-w-[250px] mb-6">You don't have any active bookings right now.</p>
                 <Link href="/services">
-                  <Button variant="outline" className="rounded-full">Browse Services</Button>
+                  <Button variant="outline" className="rounded-full">{t("browseServices") || "Browse Services"}</Button>
                 </Link>
               </Card>
             )}
@@ -115,7 +117,7 @@ export default function DashboardClient({
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <h2 className="font-heading text-2xl font-semibold tracking-tight mb-6">Quick Book</h2>
+          <h2 className="font-heading text-2xl font-semibold tracking-tight mb-6">{t("quickBook")}</h2>
           <div className="grid gap-4 sm:grid-cols-2 h-[calc(100%-3rem)]">
             {[
               { title: "Sofa Cleaning", slug: "sofa-cleaning" },
@@ -131,7 +133,7 @@ export default function DashboardClient({
                   <Card className="p-6 border-black/5 bg-white shadow-sm hover:shadow-md hover:border-primary/20 transition-all flex flex-col justify-between h-full rounded-3xl group">
                     <h4 className="font-medium text-lg tracking-tight group-hover:text-primary transition-colors">{service.title}</h4>
                     <span className="text-sm font-medium text-primary mt-4 flex items-center gap-2 opacity-80 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
-                      Book Again <span className="text-lg leading-none">→</span>
+                      {t("bookAgain")} <span className="text-lg leading-none">→</span>
                     </span>
                   </Card>
                 </Link>

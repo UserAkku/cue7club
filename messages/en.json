@@ -3,7 +3,43 @@
     "title": "Premium Services for Your Home & Lifestyle",
     "subtitle": "Book top-rated professionals for home, health, garden, and more. Clean, fast, and reliable.",
     "bookNow": "Book Now",
-    "exploreServices": "Explore Services"
+    "exploreServices": "Explore Services",
+    "ServiceCategories": {
+      "heading": "Everything your home needs.",
+      "cleaning": "Home Cleaning",
+      "cleaningCount": "42+ Pros",
+      "pool": "Pool Cleaning",
+      "poolCount": "12+ Pros",
+      "garden": "Garden Maintenance",
+      "gardenCount": "28+ Pros",
+      "health": "Health & Wellness",
+      "healthCount": "15+ Pros"
+    },
+    "HowItWorks": {
+      "heading": "Zero friction.<br />Pure service.",
+      "step1Title": "Select a Service",
+      "step1Desc": "Browse our premium services and pick the one that fits your exact needs.",
+      "step2Title": "Pick a Time",
+      "step2Desc": "Choose a convenient slot. Our pros work around your schedule, not ours.",
+      "step3Title": "Relax & Done",
+      "step3Desc": "A verified professional arrives and delivers top-tier service. Guaranteed."
+    },
+    "Testimonials": {
+      "heading": "Don't just take our word for it.",
+      "subheading": "Over 15,000+ bookings completed with an average rating of 4.8 out of 5 stars.",
+      "review1": "The easiest booking experience I've had. The pro arrived on time, was extremely polite, and the deep clean was spotless.",
+      "role1": "Homeowner",
+      "review2": "Used them for my garden makeover. Highly professional and transparent pricing. No hidden fees at all.",
+      "role2": "Verified Customer",
+      "review3": "Booked a massage therapist. Fantastic service, very premium feel from the app all the way to the actual service.",
+      "role3": "Homeowner"
+    },
+    "CtaSection": {
+      "heading": "Ready to upgrade your home?",
+      "subheading": "Join thousands of happy customers who trust Cue7Club for all their premium home service needs.",
+      "bookBtn": "Book a Service",
+      "proBtn": "Become a Professional"
+    }
   },
   "Navigation": {
     "home": "Home",
@@ -212,5 +248,22 @@
     "404": "Page not found",
     "500": "Internal server error",
     "unauthorized": "Unauthorized access"
+  },
+  "Footer": {
+    "description": "Premium services for your home and lifestyle. Clean, fast, and reliable professionals.",
+    "services": "Services",
+    "homeCleaning": "Home Cleaning",
+    "gardenMaintenance": "Garden Maintenance",
+    "poolCleaning": "Pool Cleaning",
+    "healthWellness": "Health & Wellness",
+    "company": "Company",
+    "aboutUs": "About Us",
+    "careers": "Careers",
+    "becomePro": "Become a Professional",
+    "contactSupport": "Contact Support",
+    "legal": "Legal",
+    "termsOfService": "Terms of Service",
+    "privacyPolicy": "Privacy Policy",
+    "copyright": "\u00a9 {year} Cue7Club. All rights reserved."
   }
 }

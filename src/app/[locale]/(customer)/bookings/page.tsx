@@ -6,8 +6,10 @@ import { Calendar, Clock, MapPin } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export default async function BookingsPage({ params }: { params: Promise<{ locale: string }> }) {
+  const t = useTranslations("Dashboard");
   const resolvedParams = await params;
   const session = await auth();
   if (!session?.user?.id) redirect(`/${resolvedParams.locale}/login`);
@@ -24,8 +26,8 @@ export default async function BookingsPage({ params }: { params: Promise<{ local
   return (
     <div className="pb-12 max-w-5xl mx-auto">
       <div className="mb-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
-        <h1 className="font-heading text-4xl font-bold tracking-tight mb-2">My Bookings</h1>
-        <p className="text-muted-foreground text-lg">Manage your past and upcoming service requests.</p>
+        <h1 className="font-heading text-4xl font-bold tracking-tight mb-2">{t("myBookings")}</h1>
+        <p className="text-muted-foreground text-lg">{t("manageBookings")}</p>
       </div>
 
       <div className="space-y-6">
@@ -74,24 +76,24 @@ export default async function BookingsPage({ params }: { params: Promise<{ local
               <div className="flex flex-col justify-end gap-3 md:w-56 mt-4 md:mt-0">
                 {booking.status === "EN_ROUTE" && (
                   <Link href={`/bookings/${booking.id}`}>
-                    <Button className="w-full font-semibold rounded-2xl h-12 shadow-sm">Track Arrival</Button>
+                    <Button className="w-full font-semibold rounded-2xl h-12 shadow-sm">{t("trackArrival")}</Button>
                   </Link>
                 )}
                 {booking.status === "COMPLETED" && (
-                  <Button variant="outline" className="w-full font-medium rounded-2xl h-12 border-black/10 hover:bg-secondary">Rate Service</Button>
+                  <Button variant="outline" className="w-full font-medium rounded-2xl h-12 border-black/10 hover:bg-secondary">{t("rateService")}</Button>
                 )}
                 <Link href={`/bookings/${booking.id}`}>
-                  <Button variant="ghost" className="w-full font-medium rounded-2xl h-12 hover:bg-secondary">View Details</Button>
+                  <Button variant="ghost" className="w-full font-medium rounded-2xl h-12 hover:bg-secondary">{t("viewDetails")}</Button>
                 </Link>
               </div>
             </Card>
           </div>
         )) : (
           <div className="text-center py-24 bg-white rounded-3xl border border-black/5">
-            <h3 className="font-heading text-2xl font-bold mb-2">No bookings found</h3>
+            <h3 className="font-heading text-2xl font-bold mb-2">{t("noBookingsFound") || "No bookings found"}</h3>
             <p className="text-muted-foreground mb-6">You haven't booked any services yet.</p>
             <Link href="/services">
-              <Button size="lg" className="rounded-full px-8">Browse Services</Button>
+              <Button size="lg" className="rounded-full px-8">{t("browseServices") || "Browse Services"}</Button>
             </Link>
           </div>
         )}

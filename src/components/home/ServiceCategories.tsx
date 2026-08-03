@@ -4,36 +4,29 @@ import { motion } from "motion/react";
 import { Sparkle, Drop, Plant, Heartbeat } from "@phosphor-icons/react";
 import { Card } from "@/components/ui/Card";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 const CATEGORIES = [
   {
     id: "cleaning",
-    title: "Home Cleaning",
-    count: "42+ Pros",
     icon: Sparkle,
     colSpan: "md:col-span-2",
     rowSpan: "md:row-span-2",
   },
   {
     id: "pool",
-    title: "Pool Cleaning",
-    count: "12+ Pros",
     icon: Drop,
     colSpan: "md:col-span-1",
     rowSpan: "md:row-span-1",
   },
   {
     id: "garden",
-    title: "Garden Maintenance",
-    count: "28+ Pros",
     icon: Plant,
     colSpan: "md:col-span-1",
     rowSpan: "md:row-span-1",
   },
   {
     id: "health",
-    title: "Health & Wellness",
-    count: "15+ Pros",
     icon: Heartbeat,
     colSpan: "md:col-span-2",
     rowSpan: "md:row-span-1",
@@ -41,6 +34,8 @@ const CATEGORIES = [
 ];
 
 export function ServiceCategories() {
+  const t = useTranslations("Index.ServiceCategories");
+
   return (
     <section className="relative w-full bg-background py-24 md:py-32">
       <div className="container mx-auto max-w-[1400px] px-4 sm:px-6">
@@ -52,7 +47,7 @@ export function ServiceCategories() {
           className="mb-12 md:mb-16"
         >
           <h2 className="font-heading text-3xl font-bold tracking-tight md:text-5xl">
-            Everything your home needs.
+            {t("heading")}
           </h2>
         </motion.div>
 
@@ -84,10 +79,10 @@ export function ServiceCategories() {
                     
                     <div className="relative z-10 mt-12">
                       <h3 className="font-heading text-2xl font-semibold tracking-tight">
-                        {cat.title}
+                        {t(cat.id as any)}
                       </h3>
                       <p className="mt-2 text-sm text-muted-foreground font-medium">
-                        {cat.count}
+                        {t(`${cat.id}Count` as any)}
                       </p>
                     </div>
                   </Card>

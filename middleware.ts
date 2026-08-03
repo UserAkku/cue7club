@@ -13,6 +13,14 @@ export default auth((req) => {
   const { pathname } = req.nextUrl;
   console.log("MIDDLEWARE HIT:", pathname);
 
+  // Geolocation based default routing for root path
+  if (pathname === "/") {
+    const country = req.headers.get("x-vercel-ip-country");
+    if (country === "VN") {
+      return NextResponse.redirect(new URL("/vi", req.nextUrl));
+    }
+  }
+
   // Get locale prefix from the path
   const localeMatch = pathname.match(/^\/(en|vi)/);
   

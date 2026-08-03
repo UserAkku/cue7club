@@ -5,13 +5,16 @@ import { Button } from "@/components/ui/Button";
 import { Toolbox, CurrencyInr, Star } from "@phosphor-icons/react";
 import { Link } from "@/i18n/routing";
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 import type { Session } from "next-auth";
 
 export default function DashboardClient({ session }: { session: Session }) {
+  const t = useTranslations("ProDashboard");
+
   const stats = [
-    { label: "Jobs Today", value: "3", icon: Toolbox, color: "text-primary", bg: "bg-primary/5" },
-    { label: "Earnings (Today)", value: "₹4,500", icon: CurrencyInr, color: "text-success", bg: "bg-success/5" },
-    { label: "Overall Rating", value: "4.9", icon: Star, color: "text-warning", bg: "bg-warning/5" },
+    { label: t("jobsToday"), value: "3", icon: Toolbox, color: "text-primary", bg: "bg-primary/5" },
+    { label: t("earningsToday"), value: "₹4,500", icon: CurrencyInr, color: "text-success", bg: "bg-success/5" },
+    { label: t("overallRating"), value: "4.9", icon: Star, color: "text-warning", bg: "bg-warning/5" },
   ];
 
   return (
@@ -23,9 +26,9 @@ export default function DashboardClient({ session }: { session: Session }) {
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       >
         <h1 className="font-heading text-4xl font-bold tracking-tight mb-2">
-          Hello, {session?.user?.name || session?.user?.email?.split("@")[0] || "Professional"}
+          {t("hello")}, {session?.user?.name || session?.user?.email?.split("@")[0] || "Professional"}
         </h1>
-        <p className="text-muted-foreground text-lg">Here's your summary for today.</p>
+        <p className="text-muted-foreground text-lg">{t("summaryToday")}</p>
       </motion.div>
 
       <div className="grid gap-6 sm:grid-cols-3 mb-16">
@@ -58,7 +61,7 @@ export default function DashboardClient({ session }: { session: Session }) {
         transition={{ duration: 0.6, delay: 0.3 }}
       >
         <div className="flex items-center justify-between mb-6">
-          <h2 className="font-heading text-2xl font-semibold tracking-tight">Today's Jobs</h2>
+          <h2 className="font-heading text-2xl font-semibold tracking-tight">{t("todaysJobs")}</h2>
           <Link href="/pro/jobs" className="text-sm text-primary hover:text-primary/80 transition-colors font-medium">View All Jobs →</Link>
         </div>
         
@@ -73,7 +76,7 @@ export default function DashboardClient({ session }: { session: Session }) {
               <p className="text-sm text-muted-foreground">123 Green Park, Block B, New Delhi</p>
             </div>
             <Link href="/pro/jobs/1">
-              <Button size="lg" className="w-full md:w-auto font-medium rounded-2xl px-8 shadow-sm hover:shadow-md transition-all">Start Job</Button>
+              <Button size="lg" className="w-full md:w-auto font-medium rounded-2xl px-8 shadow-sm hover:shadow-md transition-all">{t("startJob")}</Button>
             </Link>
           </Card>
           

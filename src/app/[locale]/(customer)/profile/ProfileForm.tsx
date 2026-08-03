@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { Card } from "@/components/ui/Card";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { User, Phone, EnvelopeSimple, SignOut } from "@phosphor-icons/react";
 import { motion } from "motion/react";
@@ -16,6 +17,7 @@ type UserData = {
 };
 
 export default function ProfileForm({ user }: { user: UserData }) {
+  const t = useTranslations("Dashboard");
   const [isPending, startTransition] = useTransition();
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
@@ -39,13 +41,13 @@ export default function ProfileForm({ user }: { user: UserData }) {
     <div className="space-y-8">
       {/* Account Info Card */}
       <Card className="p-8 border-black/5 bg-white shadow-sm rounded-3xl">
-        <h2 className="font-heading text-2xl font-bold tracking-tight mb-6">Personal Details</h2>
+        <h2 className="font-heading text-2xl font-bold tracking-tight mb-6">{t("profileSettings")}</h2>
         
         <form action={handleSubmit} className="space-y-6">
           <div className="grid gap-6 sm:grid-cols-2">
             
             <div className="space-y-2">
-              <label htmlFor="name" className="text-sm font-semibold text-muted-foreground ml-1">Full Name</label>
+              <label htmlFor="name" className="text-sm font-semibold text-muted-foreground ml-1">{t("firstName")}</label>
               <div className="relative">
                 <User className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={20} weight="duotone" />
                 <input 
@@ -60,7 +62,7 @@ export default function ProfileForm({ user }: { user: UserData }) {
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="email" className="text-sm font-semibold text-muted-foreground ml-1">Email Address</label>
+              <label htmlFor="email" className="text-sm font-semibold text-muted-foreground ml-1">{t("email") || "Email Address"}</label>
               <div className="relative">
                 <EnvelopeSimple className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={20} weight="duotone" />
                 <input 
@@ -74,7 +76,7 @@ export default function ProfileForm({ user }: { user: UserData }) {
             </div>
 
             <div className="space-y-2 sm:col-span-2">
-              <label htmlFor="phone" className="text-sm font-semibold text-muted-foreground ml-1">Phone Number</label>
+              <label htmlFor="phone" className="text-sm font-semibold text-muted-foreground ml-1">{t("phoneNumber")}</label>
               <div className="relative">
                 <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={20} weight="duotone" />
                 <input 
@@ -102,7 +104,7 @@ export default function ProfileForm({ user }: { user: UserData }) {
 
           <div className="pt-4 flex justify-end">
             <Button type="submit" disabled={isPending} className="h-12 px-8 font-semibold rounded-2xl shadow-sm">
-              {isPending ? "Saving..." : "Save Changes"}
+              {isPending ? "Saving..." : t("saveChanges")}
             </Button>
           </div>
         </form>
@@ -120,7 +122,7 @@ export default function ProfileForm({ user }: { user: UserData }) {
             onClick={handleSignOut} 
             className="h-12 border-destructive/30 text-destructive hover:bg-destructive hover:text-white rounded-2xl font-semibold shadow-sm w-full sm:w-auto transition-colors"
           >
-            <SignOut size={20} className="mr-2" weight="bold" /> Sign Out
+            <SignOut size={20} className="mr-2" weight="bold" /> {t("signOut")}
           </Button>
         </div>
       </Card>

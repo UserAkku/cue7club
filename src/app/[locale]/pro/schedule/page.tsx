@@ -7,7 +7,10 @@ import { Calendar, Clock, CheckCircle } from "@phosphor-icons/react";
 import { motion } from "motion/react";
 import { useState } from "react";
 
+import { useTranslations } from "next-intl";
+
 export default function SchedulePage() {
+  const t = useTranslations("ProDashboard");
   const [isAvailable, setIsAvailable] = useState(true);
 
   const schedule = [
@@ -23,7 +26,7 @@ export default function SchedulePage() {
     <div className="pb-12 max-w-4xl mx-auto">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-10 gap-4">
         <div>
-          <h1 className="font-heading text-4xl font-bold tracking-tight mb-2">My Schedule</h1>
+          <h1 className="font-heading text-4xl font-bold tracking-tight mb-2">{t("schedule")}</h1>
           <p className="text-muted-foreground">Manage your availability and upcoming appointments.</p>
         </div>
         

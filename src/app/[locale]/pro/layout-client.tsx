@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/routing";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -7,18 +8,19 @@ import { SignOut, SquaresFour, CalendarPlus, CurrencyInr, UserCircle, Toolbox, C
 import { signOut } from "next-auth/react";
 import { ProMobileBottomNav } from "@/components/layout/ProMobileBottomNav";
 
-const navItems = [
-  { href: "/pro/dashboard", label: "Overview", icon: SquaresFour },
-  { href: "/pro/jobs", label: "My Jobs", icon: Toolbox },
-  { href: "/pro/schedule", label: "Schedule", icon: CalendarPlus },
-  { href: "/pro/earnings", label: "Earnings", icon: CurrencyInr },
-  { href: "/pro/profile", label: "Pro Profile", icon: UserCircle },
-];
-
 export default function ProfessionalLayout({ children }: { children: React.ReactNode }) {
+  const t = useTranslations("ProDashboard");
   const pathname = usePathname();
   const router = useRouter();
   const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const navItems = [
+    { href: "/pro/dashboard", label: t("overview"), icon: SquaresFour },
+    { href: "/pro/jobs", label: t("myJobs"), icon: Toolbox },
+    { href: "/pro/schedule", label: t("schedule"), icon: CalendarPlus },
+    { href: "/pro/earnings", label: t("earnings"), icon: CurrencyInr },
+    { href: "/pro/profile", label: t("proProfile"), icon: UserCircle },
+  ];
 
   return (
     <div className="flex min-h-[100dvh] bg-background">

@@ -8,20 +8,22 @@ import { Button } from "@/components/ui/Button";
 import { Avatar } from "@/components/ui/Avatar";
 import { CheckCircle, PhoneCall, ChatText, Receipt } from "@phosphor-icons/react";
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 const TrackingMap = dynamic(() => import("@/components/map/TrackingMap"), { ssr: false });
 
 export default function BookingDetailPage() {
+  const t = useTranslations("Dashboard");
   const params = useParams();
   const bookingId = params.id as string;
   const status: string = "EN_ROUTE";
 
   const steps = [
-    { label: "Booked", completed: true },
-    { label: "Confirmed", completed: true },
-    { label: "En Route", completed: status === "EN_ROUTE" || status === "ARRIVED" || status === "COMPLETED", active: status === "EN_ROUTE" },
-    { label: "Arrived", completed: status === "ARRIVED" || status === "COMPLETED", active: status === "ARRIVED" },
-    { label: "Completed", completed: status === "COMPLETED" },
+    { label: t("booked"), completed: true },
+    { label: t("confirmed"), completed: true },
+    { label: t("enRoute"), completed: status === "EN_ROUTE" || status === "ARRIVED" || status === "COMPLETED", active: status === "EN_ROUTE" },
+    { label: t("arrived"), completed: status === "ARRIVED" || status === "COMPLETED", active: status === "ARRIVED" },
+    { label: t("completed"), completed: status === "COMPLETED" },
   ];
 
   return (
@@ -34,7 +36,7 @@ export default function BookingDetailPage() {
       >
         <div>
           <div className="flex items-center gap-3 mb-2">
-            <h1 className="font-heading text-4xl font-bold tracking-tight">Booking #{bookingId}</h1>
+            <h1 className="font-heading text-4xl font-bold tracking-tight">{t("booking")}{bookingId}</h1>
             <Badge variant="outline" className={`text-sm px-3 py-1 uppercase tracking-wider ${
               status === "COMPLETED" ? "text-success border-success/30" : 
               status === "EN_ROUTE" ? "text-warning border-warning/30 bg-warning/10" : 
@@ -130,33 +132,33 @@ export default function BookingDetailPage() {
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           <Card className="p-8 border-black/5 bg-white shadow-md rounded-3xl sticky top-24">
-            <h3 className="font-heading text-xl font-semibold tracking-tight mb-8">Payment Summary</h3>
+            <h3 className="font-heading text-xl font-semibold tracking-tight mb-8">{t("paymentSummary")}</h3>
             
             <div className="space-y-4 text-sm">
               <div className="flex justify-between items-center p-3 rounded-xl bg-secondary/50 border border-black/5">
-                <span className="text-muted-foreground font-medium">Service Package (Premium)</span>
+                <span className="text-muted-foreground font-medium">{t("servicePackage")} (Premium)</span>
                 <span className="font-medium text-base">₹4,999</span>
               </div>
               <div className="flex justify-between items-center px-3 py-2">
-                <span className="text-muted-foreground">Taxes & Fees</span>
+                <span className="text-muted-foreground">{t("taxesFees")}</span>
                 <span className="font-medium">₹250</span>
               </div>
               
               <hr className="my-6 border-black/10" />
               
               <div className="flex justify-between items-center px-2">
-                <span className="text-muted-foreground font-semibold">Total Paid</span>
+                <span className="text-muted-foreground font-semibold">{t("totalPaid")}</span>
                 <span className="font-bold text-2xl tracking-tight">₹5,249</span>
               </div>
             </div>
             
             <div className="mt-10 flex flex-col gap-4">
               <Button variant="outline" className="w-full h-14 font-semibold rounded-2xl border-black/10 hover:bg-secondary group shadow-sm">
-                <Receipt size={20} className="mr-2 group-hover:-translate-y-0.5 transition-transform" /> Download Receipt
+                <Receipt size={20} className="mr-2 group-hover:-translate-y-0.5 transition-transform" /> {t("downloadReceipt")}
               </Button>
               {status !== "COMPLETED" && status !== "EN_ROUTE" && status !== "ARRIVED" && (
                 <Button variant="ghost" className="w-full h-12 text-destructive hover:bg-destructive/10 hover:text-destructive rounded-2xl font-medium transition-colors">
-                  Cancel Booking
+                  {t("cancelBooking")}
                 </Button>
               )}
             </div>

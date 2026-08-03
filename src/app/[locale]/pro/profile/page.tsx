@@ -6,11 +6,14 @@ import { User, Phone, EnvelopeSimple, MapPin, Star, SignOut } from "@phosphor-ic
 import { motion } from "motion/react";
 import { signOut } from "next-auth/react";
 
+import { useTranslations } from "next-intl";
+
 export default function ProProfilePage() {
+  const t = useTranslations("ProDashboard");
   return (
     <div className="pb-12 max-w-3xl mx-auto">
       <div className="mb-10">
-        <h1 className="font-heading text-4xl font-bold tracking-tight mb-2">Professional Profile</h1>
+        <h1 className="font-heading text-4xl font-bold tracking-tight mb-2">{t("proProfile")}</h1>
         <p className="text-muted-foreground">Manage your personal details and service areas.</p>
       </div>
 

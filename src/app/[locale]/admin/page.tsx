@@ -3,22 +3,25 @@
 import { Card } from "@/components/ui/Card";
 import { TrendUp, Users, CalendarCheck, CurrencyInr } from "@phosphor-icons/react";
 import dynamic from "next/dynamic";
+import { useTranslations } from "next-intl";
 
 const RevenueChart = dynamic(() => import("@/components/admin/RevenueChart"), { ssr: false });
 
 export default function AdminDashboardPage() {
+  const t = useTranslations("Admin");
+
   const stats = [
-    { label: "Total Revenue", value: "₹4.2M", trend: "+12.5%", icon: CurrencyInr },
-    { label: "Total Bookings", value: "1,248", trend: "+8.2%", icon: CalendarCheck },
-    { label: "Active Pros", value: "142", trend: "+2.4%", icon: Users },
-    { label: "Conversion Rate", value: "8.4%", trend: "+1.1%", icon: TrendUp },
+    { label: t("totalRevenue"), value: "₹4.2M", trend: "+12.5%", icon: CurrencyInr },
+    { label: t("totalBookings"), value: "1,248", trend: "+8.2%", icon: CalendarCheck },
+    { label: t("activePros"), value: "142", trend: "+2.4%", icon: Users },
+    { label: t("conversionRate"), value: "8.4%", trend: "+1.1%", icon: TrendUp },
   ];
 
   return (
     <div>
       <div className="mb-8">
-        <h1 className="font-heading text-3xl font-bold tracking-tight">Platform Analytics</h1>
-        <p className="text-muted-foreground mt-2">Key performance metrics and revenue trends.</p>
+        <h1 className="font-heading text-3xl font-bold tracking-tight">{t("platformAnalytics")}</h1>
+        <p className="text-muted-foreground mt-2">{t("keyMetrics")}</p>
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-8">
@@ -44,7 +47,7 @@ export default function AdminDashboardPage() {
       <div className="grid gap-8 lg:grid-cols-3">
         <div className="lg:col-span-2">
           <Card className="p-6 border-white/5 h-full">
-            <h2 className="font-heading text-lg font-semibold mb-6">Revenue Over Time</h2>
+            <h2 className="font-heading text-lg font-semibold mb-6">{t("revenueOverTime")}</h2>
             <div className="h-[300px] w-full">
               <RevenueChart />
             </div>
@@ -53,7 +56,7 @@ export default function AdminDashboardPage() {
 
         <div>
           <Card className="p-6 border-white/5 h-full">
-            <h2 className="font-heading text-lg font-semibold mb-6">Recent Professional Approvals</h2>
+            <h2 className="font-heading text-lg font-semibold mb-6">{t("recentApprovals")}</h2>
             
             <div className="space-y-4">
               {[

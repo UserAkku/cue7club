@@ -2,19 +2,22 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { SignOut, ChartBar, Users, ShieldCheck, GridFour, CalendarCheck } from "@phosphor-icons/react";
 import { signOut } from "next-auth/react";
 
-const navItems = [
-  { href: "/admin", label: "Analytics", icon: ChartBar },
-  { href: "/admin/professionals", label: "Professionals", icon: ShieldCheck },
-  { href: "/admin/bookings", label: "All Bookings", icon: CalendarCheck },
-  { href: "/admin/users", label: "Customers", icon: Users },
-  { href: "/admin/services", label: "Services", icon: GridFour },
-];
-
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const t = useTranslations("Admin");
+  const tDash = useTranslations("Dashboard");
+
+  const navItems = [
+    { href: "/admin", label: t("analytics"), icon: ChartBar },
+    { href: "/admin/professionals", label: t("professionals"), icon: ShieldCheck },
+    { href: "/admin/bookings", label: t("allBookings"), icon: CalendarCheck },
+    { href: "/admin/users", label: t("customers"), icon: Users },
+    { href: "/admin/services", label: t("services"), icon: GridFour },
+  ];
 
   return (
     <div className="flex min-h-[100dvh] bg-background">
@@ -24,7 +27,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-danger font-heading font-bold text-white">
               A
             </div>
-            <span className="font-heading text-lg font-bold tracking-tight">Admin Console</span>
+            <span className="font-heading text-lg font-bold tracking-tight">{t("adminConsole")}</span>
           </Link>
         </div>
         
@@ -36,7 +39,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors \${
+                className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
                   isActive 
                     ? "bg-white/10 text-foreground" 
                     : "text-muted-foreground hover:bg-white/5 hover:text-foreground"
@@ -55,16 +58,16 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-danger hover:bg-danger/10 transition-colors"
           >
             <SignOut size={20} />
-            Sign Out
+            {tDash("signOut")}
           </button>
         </div>
       </aside>
 
       <main className="flex-1 flex flex-col min-w-0">
         <header className="flex h-16 shrink-0 items-center justify-between border-b border-white/5 bg-background px-8">
-          <span className="font-heading text-lg font-bold">Dashboard Overview</span>
+          <span className="font-heading text-lg font-bold">{t("dashboardOverview")}</span>
           <div className="flex items-center gap-4">
-            <span className="text-sm font-medium text-muted-foreground">Admin Mode</span>
+            <span className="text-sm font-medium text-muted-foreground">{t("adminMode")}</span>
           </div>
         </header>
         <div className="flex-1 overflow-auto p-8">

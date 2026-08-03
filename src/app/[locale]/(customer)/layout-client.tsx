@@ -2,19 +2,22 @@
 
 import { Link, usePathname } from "@/i18n/routing";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { SignOut, SquaresFour, CalendarCheck, UserCircle, MapPin, CaretLeft, CaretRight, ArrowLeft } from "@phosphor-icons/react";
 import { signOut } from "next-auth/react";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { useState } from "react";
 
-const navItems = [
-  { href: "/dashboard", label: "Overview", icon: SquaresFour },
-  { href: "/bookings", label: "My Bookings", icon: CalendarCheck },
-  { href: "/profile", label: "Profile Settings", icon: UserCircle },
-  { href: "/profile/addresses", label: "Saved Addresses", icon: MapPin },
-];
 
 export default function CustomerLayout({ children }: { children: React.ReactNode }) {
+  const t = useTranslations("Dashboard");
+  const tBooking = useTranslations("Booking");
+  const navItems = [
+    { href: "/dashboard", label: t("overview"), icon: SquaresFour },
+    { href: "/bookings", label: t("myBookings"), icon: CalendarCheck },
+    { href: "/profile", label: t("profileSettings"), icon: UserCircle },
+    { href: "/profile/addresses", label: t("savedAddresses"), icon: MapPin },
+  ];
   const pathname = usePathname();
   const router = useRouter();
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -65,7 +68,7 @@ export default function CustomerLayout({ children }: { children: React.ReactNode
             }`}
             title={isCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
           >
-            {isCollapsed ? <CaretRight size={20} /> : <><CaretLeft size={20} /> <span className="whitespace-nowrap">Collapse</span></>}
+            {isCollapsed ? <CaretRight size={20} /> : <><CaretLeft size={20} /> <span className="whitespace-nowrap">{tBooking("back")}</span></>}
           </button>
           
           <button 
@@ -73,10 +76,10 @@ export default function CustomerLayout({ children }: { children: React.ReactNode
             className={`flex items-center rounded-xl py-3 text-sm font-medium text-danger hover:bg-danger/10 transition-colors \${
               isCollapsed ? 'justify-center px-0' : 'gap-3 px-4 w-full'
             }`}
-            title={isCollapsed ? "Sign Out" : undefined}
+            title={isCollapsed ? t("signOut") : undefined}
           >
             <SignOut size={24} className="shrink-0" />
-            {!isCollapsed && <span className="whitespace-nowrap">Sign Out</span>}
+            {!isCollapsed && <span className="whitespace-nowrap">{t("signOut")}</span>}
           </button>
         </div>
       </aside>
@@ -91,7 +94,7 @@ export default function CustomerLayout({ children }: { children: React.ReactNode
             >
               <ArrowLeft size={20} />
             </button>
-            <span className="font-heading text-lg font-bold">Dashboard</span>
+            <span className="font-heading text-lg font-bold">{t("overview")}</span>
           </div>
         </header>
         <div className="flex-1 overflow-auto p-4 sm:p-8">
@@ -102,7 +105,7 @@ export default function CustomerLayout({ children }: { children: React.ReactNode
                 onClick={() => router.back()}
                 className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 -ml-3 rounded-full hover:bg-secondary/40 w-fit"
               >
-                <ArrowLeft size={16} /> Back
+                <ArrowLeft size={16} /> {tBooking("back")}
               </button>
             </div>
             

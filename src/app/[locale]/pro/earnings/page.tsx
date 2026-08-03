@@ -5,7 +5,10 @@ import { Button } from "@/components/ui/Button";
 import { CurrencyInr, Wallet, Bank, TrendUp } from "@phosphor-icons/react";
 import { motion } from "motion/react";
 
+import { useTranslations } from "next-intl";
+
 export default function EarningsPage() {
+  const t = useTranslations("ProDashboard");
   const transactions = [
     { id: "TX-9938", type: "Payout", amount: "₹1,499", date: "Today, 11:30 AM", status: "Completed", icon: Wallet },
     { id: "TX-9937", type: "Payout", amount: "₹999", date: "Yesterday", status: "Completed", icon: Wallet },
@@ -17,7 +20,7 @@ export default function EarningsPage() {
     <div className="pb-12 max-w-4xl mx-auto">
       <div className="mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
         <div>
-          <h1 className="font-heading text-4xl font-bold tracking-tight mb-2">Earnings</h1>
+          <h1 className="font-heading text-4xl font-bold tracking-tight mb-2">{t("earnings")}</h1>
           <p className="text-muted-foreground">Track your payouts, balances, and history.</p>
         </div>
         

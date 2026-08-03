@@ -6,7 +6,10 @@ import { Button } from "@/components/ui/Button";
 import { Link } from "@/i18n/routing";
 import { motion } from "motion/react";
 
+import { useTranslations } from "next-intl";
+
 export default function JobsPage() {
+  const t = useTranslations("ProDashboard");
   const jobs = [
     {
       id: "1",
@@ -39,7 +42,7 @@ export default function JobsPage() {
   return (
     <div className="pb-8 max-w-4xl mx-auto">
       <div className="mb-10">
-        <h1 className="font-heading text-4xl font-bold tracking-tight mb-2">My Jobs</h1>
+        <h1 className="font-heading text-4xl font-bold tracking-tight mb-2">{t("myJobs")}</h1>
         <p className="text-muted-foreground">Manage your upcoming and past service requests.</p>
       </div>
 
@@ -71,7 +74,7 @@ export default function JobsPage() {
                 )}
                 <Link href={`/pro/jobs/${job.id}`}>
                   <Button variant={job.status === "UPCOMING" ? "primary" : "secondary"}>
-                    {job.status === "UPCOMING" ? "Start Job" : "View Details"}
+                    {job.status === "UPCOMING" ? t("startJob") : "View Details"}
                   </Button>
                 </Link>
               </div>

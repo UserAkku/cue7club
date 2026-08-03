@@ -2,26 +2,26 @@
 
 import { motion } from "motion/react";
 import { HandTap, CalendarPlus, SealCheck } from "@phosphor-icons/react";
+import { useTranslations } from "next-intl";
 
 const STEPS = [
   {
+    id: "step1",
     icon: HandTap,
-    title: "Select a Service",
-    description: "Browse our premium services and pick the one that fits your exact needs.",
   },
   {
+    id: "step2",
     icon: CalendarPlus,
-    title: "Pick a Time",
-    description: "Choose a convenient slot. Our pros work around your schedule, not ours.",
   },
   {
+    id: "step3",
     icon: SealCheck,
-    title: "Relax & Done",
-    description: "A verified professional arrives and delivers top-tier service. Guaranteed.",
   },
 ];
 
 export function HowItWorks() {
+  const t = useTranslations("Index.HowItWorks");
+
   return (
     <section className="w-full bg-secondary/30 py-24 md:py-32">
       <div className="container mx-auto max-w-[1400px] px-4 sm:px-6">
@@ -32,9 +32,10 @@ export function HowItWorks() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="mb-16 max-w-2xl"
         >
-          <h2 className="font-heading text-3xl font-bold tracking-tight md:text-5xl">
-            Zero friction.<br />Pure service.
-          </h2>
+          <h2 
+            className="font-heading text-3xl font-bold tracking-tight md:text-5xl"
+            dangerouslySetInnerHTML={{ __html: t("heading") }}
+          />
         </motion.div>
 
         <div className="grid gap-12 md:grid-cols-3 md:gap-8">
@@ -63,9 +64,9 @@ export function HowItWorks() {
                 </div>
                 
                 <div className="mt-6 pr-8">
-                  <h3 className="font-heading text-xl font-semibold">{step.title}</h3>
+                  <h3 className="font-heading text-xl font-semibold">{t(`${step.id}Title` as any)}</h3>
                   <p className="mt-3 text-muted-foreground leading-relaxed">
-                    {step.description}
+                    {t(`${step.id}Desc` as any)}
                   </p>
                 </div>
               </motion.div>

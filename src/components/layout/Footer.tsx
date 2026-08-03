@@ -4,10 +4,11 @@ import {
   InstagramLogo,
   TwitterLogo,
 } from "@phosphor-icons/react/dist/ssr";
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
 export async function Footer() {
   const locale = await getLocale();
+  const t = await getTranslations("Footer");
 
   return (
     <footer className="border-t border-border bg-background py-12 md:py-16">
@@ -23,8 +24,7 @@ export async function Footer() {
               </span>
             </Link>
             <p className="text-sm text-muted-foreground">
-              Premium services for your home and lifestyle. Clean, fast, and
-              reliable professionals.
+              {t("description")}
             </p>
             <div className="flex gap-4">
               <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
@@ -40,68 +40,68 @@ export async function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-4 font-heading font-semibold">Services</h4>
+            <h4 className="mb-4 font-heading font-semibold">{t("services")}</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <Link href={`/${locale}/services/cleaning`} className="hover:text-foreground transition-colors">
-                  Home Cleaning
+                  {t("homeCleaning")}
                 </Link>
               </li>
               <li>
                 <Link href={`/${locale}/services/garden`} className="hover:text-foreground transition-colors">
-                  Garden Maintenance
+                  {t("gardenMaintenance")}
                 </Link>
               </li>
               <li>
                 <Link href={`/${locale}/services/pool`} className="hover:text-foreground transition-colors">
-                  Pool Cleaning
+                  {t("poolCleaning")}
                 </Link>
               </li>
               <li>
                 <Link href={`/${locale}/services/health`} className="hover:text-foreground transition-colors">
-                  Health &amp; Wellness
+                  {t("healthWellness")}
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="mb-4 font-heading font-semibold">Company</h4>
+            <h4 className="mb-4 font-heading font-semibold">{t("company")}</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <Link href={`/${locale}/about`} className="hover:text-foreground transition-colors">
-                  About Us
+                  {t("aboutUs")}
                 </Link>
               </li>
               <li>
                 <Link href={`/${locale}/careers`} className="hover:text-foreground transition-colors">
-                  Careers
+                  {t("careers")}
                 </Link>
               </li>
               <li>
                 <Link href={`/${locale}/pro/register`} className="hover:text-foreground transition-colors">
-                  Become a Professional
+                  {t("becomePro")}
                 </Link>
               </li>
               <li>
                 <Link href={`/${locale}/contact`} className="hover:text-foreground transition-colors">
-                  Contact Support
+                  {t("contactSupport")}
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="mb-4 font-heading font-semibold">Legal</h4>
+            <h4 className="mb-4 font-heading font-semibold">{t("legal")}</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <Link href={`/${locale}/terms`} className="hover:text-foreground transition-colors">
-                  Terms of Service
+                  {t("termsOfService")}
                 </Link>
               </li>
               <li>
                 <Link href={`/${locale}/privacy`} className="hover:text-foreground transition-colors">
-                  Privacy Policy
+                  {t("privacyPolicy")}
                 </Link>
               </li>
             </ul>
@@ -109,7 +109,7 @@ export async function Footer() {
         </div>
 
         <div className="mt-12 border-t border-border pt-8 text-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} Cue7Club. All rights reserved.</p>
+          <p>{t("copyright", { year: new Date().getFullYear() })}</p>
         </div>
       </div>
     </footer>
