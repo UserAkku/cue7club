@@ -14,10 +14,10 @@ export function StepDateTime({ date, timeSlot, onSelect, onNext, onBack }: any) 
 
   return (
     <div>
-      <h2 className="font-heading text-2xl font-bold mb-6">Select Date & Time</h2>
+      <h2 className="font-heading text-2xl font-bold mb-6">{t("selectDateTime")}</h2>
       
       <div className="mb-6">
-        <h3 className="mb-3 text-sm font-medium text-muted-foreground">Date</h3>
+        <h3 className="mb-3 text-sm font-medium text-muted-foreground">{t("dateLabel")}</h3>
         <div className="flex gap-4 overflow-x-auto pb-2">
           {dates.map((d) => (
             <button
@@ -33,7 +33,7 @@ export function StepDateTime({ date, timeSlot, onSelect, onNext, onBack }: any) 
       </div>
 
       <div className="mb-8">
-        <h3 className="mb-3 text-sm font-medium text-muted-foreground">Time</h3>
+        <h3 className="mb-3 text-sm font-medium text-muted-foreground">{t("timeLabel")}</h3>
         <div className="grid grid-cols-3 gap-3 sm:grid-cols-4">
           {slots.map((t) => (
             <button

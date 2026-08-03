@@ -76,7 +76,8 @@
     "resend": "Resend",
     "backToLogin": "Back to login",
     "invalidRequest": "Invalid request.",
-    "goBackToLogin": "Go back to Login"
+    "goBackToLogin": "Go back to Login",
+    "loading": "Loading..."
   },
   "Services": {
     "premiumServices": "Premium Services",
@@ -104,7 +105,16 @@
     "backgroundVerified": "Background-verified professionals",
     "transparentPricing": "Transparent pricing, no hidden fees",
     "realTimeTracking": "Real-time pro tracking",
-    "continueToBooking": "Continue to Booking"
+    "continueToBooking": "Continue to Booking",
+    "standardPkg": "Standard",
+    "popularBadge": "POPULAR",
+    "premiumPkg": "Premium",
+    "whyChooseUs": "Why choose MadClap?",
+    "strictBackground": "Strict background checks on all staff.",
+    "noHiddenFees": "No hidden fees or surprise charges.",
+    "trackLive": "Track your professional's arrival live.",
+    "reviewsCount": "124 reviews",
+    "thirtyDayGuarantee": "30-Day Guarantee"
   },
   "Booking": {
     "bookService": "Book Service",
@@ -136,7 +146,19 @@
     "bookingConfirmed": "Booking Confirmed!",
     "bookingConfirmedDesc": "Thank you for choosing MadClap. Your professional has been assigned and will arrive at your scheduled time. You can track their location in your dashboard.",
     "goToDashboard": "Go to Dashboard",
-    "returnHome": "Return Home"
+    "returnHome": "Return Home",
+    "whenDoYouNeedIt": "When do you need it?",
+    "whereDoWeGo": "Where do we go?",
+    "houseFlatBlock": "House / Flat / Block No.",
+    "city": "City",
+    "pincode": "Pincode",
+    "state": "State",
+    "backBtn": "Back",
+    "reviewAndPay": "Review & Pay",
+    "packageLabel": "Package",
+    "dateLabel": "Date",
+    "timeLabel": "Time",
+    "secureRazorpay": "Your payment is processed securely via Razorpay. We do not store card details."
   },
   "Dashboard": {
     "overview": "Overview",
@@ -181,7 +203,13 @@
     "addNew": "Add New",
     "default": "Default",
     "edit": "Edit",
-    "addNewAddress": "Add New Address"
+    "addNewAddress": "Add New Address",
+    "noBookingsYet": "You haven't booked any services yet.",
+    "noActiveBookings": "You don't have any active bookings right now.",
+    "signOutDevice": "Sign out of your account on this device.",
+    "defaultLabel": "Default",
+    "editBtn": "Edit",
+    "manageInfo": "Manage your personal information and preferences."
   },
   "ProDashboard": {
     "overview": "Overview",
@@ -207,7 +235,22 @@
     "completeJob": "Complete Job",
     "jobCompletedSuccess": "Job Completed Successfully",
     "estimatedEarnings": "Estimated Earnings",
-    "paymentMode": "Payment Mode"
+    "paymentMode": "Payment Mode",
+    "manageAvailability": "Manage your availability and upcoming appointments.",
+    "statusLabel": "Status:",
+    "today": "Today",
+    "viewAllJobs": "View All Jobs →",
+    "upcoming": "Upcoming",
+    "completedLabel": "Completed",
+    "managePersonalDetails": "Manage your personal details and service areas.",
+    "trackPayouts": "Track your payouts, balances, and history.",
+    "readyToWithdraw": "Ready to be withdrawn to your bank account.",
+    "totalEarningsMonth": "Total Earnings (This Month)",
+    "doingGreat": "You are doing great this month!",
+    "greatWork": "Great work!",
+    "onlinePrepaid": "Online (Pre-paid)",
+    "manageServiceRequests": "Manage your upcoming and past service requests.",
+    "selectDate": "Select Date"
   },
   "Admin": {
     "analytics": "Analytics",
@@ -242,7 +285,8 @@
     "cancel": "Cancel",
     "save": "Save",
     "continue": "Continue",
-    "back": "Back"
+    "back": "Back",
+    "collapse": "Collapse"
   },
   "Errors": {
     "404": "Page not found",

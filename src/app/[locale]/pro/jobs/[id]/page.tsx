@@ -41,7 +41,7 @@ export default function JobDetailPage() {
               {status}
             </Badge>
           </div>
-          <p className="text-muted-foreground text-lg">Full Home Deep Cleaning</p>
+          <p className="text-muted-foreground text-lg">{t("fullDeepCleaning") || "Full Home Deep Cleaning"}</p>
         </div>
       </motion.div>
 
@@ -158,7 +158,7 @@ export default function JobDetailPage() {
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                   </div>
                   <div className="text-success font-bold text-lg tracking-tight">{t("jobCompletedSuccess") || "Job Completed"}</div>
-                  <p className="text-success/80 text-sm mt-1">Great work!</p>
+                  <p className="text-success/80 text-sm mt-1">{t("greatWork")}</p>
                 </motion.div>
               )}
             </div>
@@ -172,7 +172,7 @@ export default function JobDetailPage() {
               </div>
               <div className="flex justify-between items-center px-3 py-2">
                 <span className="text-muted-foreground">{t("paymentMode")}</span>
-                <span className="font-medium">Online (Pre-paid)</span>
+                <span className="font-medium">{t("onlinePrepaid")}</span>
               </div>
             </div>
           </Card>

@@ -62,17 +62,17 @@ export default function DashboardClient({ session }: { session: Session }) {
       >
         <div className="flex items-center justify-between mb-6">
           <h2 className="font-heading text-2xl font-semibold tracking-tight">{t("todaysJobs")}</h2>
-          <Link href="/pro/jobs" className="text-sm text-primary hover:text-primary/80 transition-colors font-medium">View All Jobs →</Link>
+          <Link href="/pro/jobs" className="text-sm text-primary hover:text-primary/80 transition-colors font-medium">{t("viewAllJobs")}</Link>
         </div>
         
         <div className="space-y-4">
           <Card className="p-6 border-black/5 bg-white hover:bg-secondary/20 shadow-sm transition-colors flex flex-col md:flex-row justify-between md:items-center gap-6 rounded-3xl">
             <div>
               <div className="flex items-center gap-3 mb-3">
-                <span className="bg-primary/10 text-primary border border-primary/20 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Upcoming</span>
+                <span className="bg-primary/10 text-primary border border-primary/20 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase tracking-wider">{t("upcoming")}</span>
                 <span className="text-sm font-medium text-muted-foreground">02:00 PM</span>
               </div>
-              <h3 className="font-heading font-semibold text-xl tracking-tight mb-1">Full Home Deep Cleaning</h3>
+              <h3 className="font-heading font-semibold text-xl tracking-tight mb-1">{t("fullDeepCleaning") || "Full Home Deep Cleaning"}</h3>
               <p className="text-sm text-muted-foreground">123 Green Park, Block B, New Delhi</p>
             </div>
             <Link href="/pro/jobs/1">
@@ -83,10 +83,10 @@ export default function DashboardClient({ session }: { session: Session }) {
           <Card className="p-6 border-black/5 bg-secondary/30 flex flex-col md:flex-row justify-between md:items-center gap-6 rounded-3xl opacity-75 grayscale-[30%]">
             <div>
               <div className="flex items-center gap-3 mb-3">
-                <span className="bg-success/10 text-success border border-success/20 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Completed</span>
+                <span className="bg-success/10 text-success border border-success/20 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase tracking-wider">{t("completedLabel")}</span>
                 <span className="text-sm font-medium text-muted-foreground">10:00 AM</span>
               </div>
-              <h3 className="font-heading font-semibold text-xl tracking-tight mb-1">Sofa Cleaning</h3>
+              <h3 className="font-heading font-semibold text-xl tracking-tight mb-1">{t("sofaCleaning") || "Sofa Cleaning"}</h3>
               <p className="text-sm text-muted-foreground">45 Lajpat Nagar, New Delhi</p>
             </div>
             <div className="text-right">

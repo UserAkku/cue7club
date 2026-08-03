@@ -14,7 +14,7 @@ export default function ProProfilePage() {
     <div className="pb-12 max-w-3xl mx-auto">
       <div className="mb-10">
         <h1 className="font-heading text-4xl font-bold tracking-tight mb-2">{t("proProfile")}</h1>
-        <p className="text-muted-foreground">Manage your personal details and service areas.</p>
+        <p className="text-muted-foreground">{t("managePersonalDetails")}</p>
       </div>
 
       <motion.div

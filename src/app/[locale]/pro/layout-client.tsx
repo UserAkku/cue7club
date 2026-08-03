@@ -69,7 +69,7 @@ export default function ProfessionalLayout({ children }: { children: React.React
             }`}
             title={isCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
           >
-            {isCollapsed ? <CaretRight size={20} /> : <><CaretLeft size={20} /> <span className="whitespace-nowrap">Collapse</span></>}
+            {isCollapsed ? <CaretRight size={20} /> : <><CaretLeft size={20} /> <span className="whitespace-nowrap">{t("collapse") || "Collapse"}</span></>}
           </button>
           
           <button 

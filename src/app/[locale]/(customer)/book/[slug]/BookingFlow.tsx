@@ -130,7 +130,7 @@ export default function BookingFlow({
         {/* Step 2: Schedule */}
         {step === 2 && (
           <motion.div key="step2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
-            <h2 className="text-xl font-bold mb-4">When do you need it?</h2>
+            <h2 className="text-xl font-bold mb-4">{t("whenDoYouNeedIt")}</h2>
             <Card className="p-6 md:p-8 border-black/5 shadow-sm rounded-3xl space-y-6">
               
               <div className="space-y-3">
@@ -175,11 +175,11 @@ export default function BookingFlow({
         {/* Step 3: Address */}
         {step === 3 && (
           <motion.div key="step3" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
-            <h2 className="text-xl font-bold mb-4">Where do we go?</h2>
+            <h2 className="text-xl font-bold mb-4">{t("whereDoWeGo")}</h2>
             <Card className="p-6 md:p-8 border-black/5 shadow-sm rounded-3xl space-y-5">
               
               <div className="space-y-2">
-                <label className="text-sm font-semibold text-muted-foreground">House / Flat / Block No.</label>
+                <label className="text-sm font-semibold text-muted-foreground">{t("houseFlatBlock")}</label>
                 <div className="relative">
                   <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={20} />
                   <input 
@@ -194,7 +194,7 @@ export default function BookingFlow({
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <label className="text-sm font-semibold text-muted-foreground">City</label>
+                  <label className="text-sm font-semibold text-muted-foreground">{t("city")}</label>
                   <input 
                     type="text" 
                     value={address.city}
@@ -203,7 +203,7 @@ export default function BookingFlow({
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-semibold text-muted-foreground">Pincode</label>
+                  <label className="text-sm font-semibold text-muted-foreground">{t("pincode")}</label>
                   <input 
                     type="text" 
                     value={address.pincode}
@@ -214,7 +214,7 @@ export default function BookingFlow({
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-semibold text-muted-foreground">State</label>
+                <label className="text-sm font-semibold text-muted-foreground">{t("state")}</label>
                 <input 
                   type="text" 
                   value={address.state}

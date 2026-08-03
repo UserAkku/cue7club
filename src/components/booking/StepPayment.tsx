@@ -96,7 +96,7 @@ export function StepPayment({ bookingData, serviceId, onBack, onSuccess }: any) 
 
   return (
     <div>
-      <h2 className="font-heading text-2xl font-bold mb-6">Review & Pay</h2>
+      <h2 className="font-heading text-2xl font-bold mb-6">{t("reviewAndPay")}</h2>
 
       <div className="flex flex-col md:flex-row gap-8">
         <div className="flex-1 space-y-6">
@@ -104,15 +104,15 @@ export function StepPayment({ bookingData, serviceId, onBack, onSuccess }: any) 
             <h3 className="font-semibold text-lg border-b border-white/10 pb-4 mb-4">{t("orderSummary")}</h3>
             <div className="space-y-3 text-sm">
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Package</span>
+                <span className="text-muted-foreground">{t("packageLabel")}</span>
                 <span className="font-medium uppercase">{bookingData.packageId}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Date</span>
+                <span className="text-muted-foreground">{t("dateLabel")}</span>
                 <span className="font-medium">{bookingData.date}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Time</span>
+                <span className="text-muted-foreground">{t("timeLabel")}</span>
                 <span className="font-medium">{bookingData.timeSlot}</span>
               </div>
             </div>
@@ -130,7 +130,7 @@ export function StepPayment({ bookingData, serviceId, onBack, onSuccess }: any) 
           <Card className="p-6 border-primary bg-primary/5 text-center h-full flex flex-col justify-center">
             <ShieldCheck size={48} className="mx-auto text-primary mb-4" weight="duotone" />
             <h4 className="font-semibold text-lg mb-2">{t("securePayment")}</h4>
-            <p className="text-sm text-muted-foreground mb-6">Your payment is processed securely via Razorpay. We do not store card details.</p>
+            <p className="text-sm text-muted-foreground mb-6">{t("secureRazorpay")}</p>
             
             <div className="mt-auto flex flex-col gap-3">
               <Button onClick={handlePayment} disabled={loading || !scriptLoaded} className="w-full h-12 text-base shadow-lg shadow-primary/20">

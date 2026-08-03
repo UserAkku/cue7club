@@ -19,7 +19,7 @@ export default function AddressesPage() {
       <div className="mb-8 flex items-center justify-between">
         <div>
           <h1 className="font-heading text-3xl font-bold tracking-tight">{t("savedAddresses") || "Saved Addresses"}</h1>
-          <p className="text-muted-foreground mt-2">Manage locations for your service bookings.</p>
+          <p className="text-muted-foreground mt-2">{t("manageLocations")}</p>
         </div>
         <Button className="hidden sm:flex items-center gap-2">
           <Plus size={16} /> Add New
@@ -37,7 +37,7 @@ export default function AddressesPage() {
                 <div className="flex items-center gap-3 mb-1">
                   <h3 className="font-semibold">{addr.label}</h3>
                   {addr.isDefault && (
-                    <span className="bg-primary/20 text-primary text-[10px] font-bold px-2 py-0.5 rounded uppercase">Default</span>
+                    <span className="bg-primary/20 text-primary text-[10px] font-bold px-2 py-0.5 rounded uppercase">{t("defaultLabel")}</span>
                   )}
                 </div>
                 <p className="text-sm text-muted-foreground">{addr.text}</p>
@@ -45,7 +45,7 @@ export default function AddressesPage() {
             </div>
             
             <div className="flex items-center gap-3 self-end sm:self-auto">
-              <Button variant="outline" size="sm">Edit</Button>
+              <Button variant="outline" size="sm">{t("editBtn")}</Button>
               <Button variant="ghost" size="icon" className="text-danger hover:bg-danger/10"><Trash size={18} /></Button>
             </div>
           </Card>

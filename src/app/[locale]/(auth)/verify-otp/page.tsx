@@ -51,7 +51,7 @@ function VerifyOtpContent() {
   if (!email) {
     return (
       <div className="text-center">
-        <p>Invalid request.</p>
+        <p>{t("invalidRequest")}</p>
         <Link href={`/${locale}/login`}>
           <Button className="mt-4">{t("goBackToLogin") || "Go back to Login"}</Button>
         </Link>
@@ -113,7 +113,7 @@ function VerifyOtpContent() {
 export default function VerifyOtpPage() {
   const t = useTranslations("Auth");
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div>{t("loading")}</div>}>
       <VerifyOtpContent />
     </Suspense>
   );

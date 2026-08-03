@@ -103,7 +103,7 @@ export default function DashboardClient({
                   <Sparkle className="text-muted-foreground" size={32} />
                 </div>
                 <h3 className="font-heading text-lg font-semibold mb-2">{t("noUpcomingServices") || "No upcoming services"}</h3>
-                <p className="text-muted-foreground text-sm max-w-[250px] mb-6">You don't have any active bookings right now.</p>
+                <p className="text-muted-foreground text-sm max-w-[250px] mb-6">{t("noActiveBookings")}</p>
                 <Link href="/services">
                   <Button variant="outline" className="rounded-full">{t("browseServices") || "Browse Services"}</Button>
                 </Link>

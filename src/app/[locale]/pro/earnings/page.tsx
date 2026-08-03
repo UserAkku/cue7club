@@ -21,7 +21,7 @@ export default function EarningsPage() {
       <div className="mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
         <div>
           <h1 className="font-heading text-4xl font-bold tracking-tight mb-2">{t("earnings")}</h1>
-          <p className="text-muted-foreground">Track your payouts, balances, and history.</p>
+          <p className="text-muted-foreground">{t("trackPayouts")}</p>
         </div>
         
         <Button size="lg" className="rounded-full px-8 shadow-sm">
@@ -41,7 +41,7 @@ export default function EarningsPage() {
               <span>{t("availableBalance") || "Available Balance"}</span>
             </div>
             <h2 className="font-heading text-5xl font-bold tracking-tight mb-2">₹12,450</h2>
-            <p className="text-sm text-muted-foreground">Ready to be withdrawn to your bank account.</p>
+            <p className="text-sm text-muted-foreground">{t("readyToWithdraw")}</p>
           </Card>
         </motion.div>
 
@@ -53,10 +53,10 @@ export default function EarningsPage() {
           <Card className="p-8 border-black/5 bg-white hover:bg-secondary/20 transition-colors rounded-3xl shadow-sm h-full flex flex-col justify-center">
             <div className="flex items-center gap-3 mb-4 text-success font-medium">
               <TrendUp size={24} weight="duotone" />
-              <span>Total Earnings (This Month)</span>
+              <span>{t("totalEarningsMonth")}</span>
             </div>
             <h2 className="font-heading text-5xl font-bold tracking-tight mb-2">₹48,200</h2>
-            <p className="text-sm text-muted-foreground">You are doing great this month!</p>
+            <p className="text-sm text-muted-foreground">{t("doingGreat")}</p>
           </Card>
         </motion.div>
       </div>

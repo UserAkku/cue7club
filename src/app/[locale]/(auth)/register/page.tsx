@@ -4,11 +4,12 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { User, IdentificationCard } from "@phosphor-icons/react";
 import { Card } from "@/components/ui/Card";
 
 export default function RegisterRoleSelection() {
+  const t = useTranslations("Auth");
   const [role, setRole] = useState<"CUSTOMER" | "PROFESSIONAL" | null>(null);
   const router = useRouter();
   const locale = useLocale();
@@ -49,7 +50,7 @@ export default function RegisterRoleSelection() {
                 : "hover:border-foreground/20"
             }`}>
               <User size={48} weight={role === "CUSTOMER" ? "duotone" : "regular"} className="mb-4 text-primary" />
-              <h3 className="font-heading text-xl font-semibold">I need a service</h3>
+              <h3 className="font-heading text-xl font-semibold">{t("needService")}</h3>
               <p className="mt-2 text-sm text-muted-foreground text-center">
                 Book cleaning, gardening, and wellness professionals.
               </p>
@@ -67,7 +68,7 @@ export default function RegisterRoleSelection() {
                 : "hover:border-foreground/20"
             }`}>
               <IdentificationCard size={48} weight={role === "PROFESSIONAL" ? "duotone" : "regular"} className="mb-4 text-primary" />
-              <h3 className="font-heading text-xl font-semibold">I'm a professional</h3>
+              <h3 className="font-heading text-xl font-semibold">{t("amProfessional")}</h3>
               <p className="mt-2 text-sm text-muted-foreground text-center">
                 List your services and get booked by customers.
               </p>

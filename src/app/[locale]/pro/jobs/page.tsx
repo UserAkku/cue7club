@@ -43,7 +43,7 @@ export default function JobsPage() {
     <div className="pb-8 max-w-4xl mx-auto">
       <div className="mb-10">
         <h1 className="font-heading text-4xl font-bold tracking-tight mb-2">{t("myJobs")}</h1>
-        <p className="text-muted-foreground">Manage your upcoming and past service requests.</p>
+        <p className="text-muted-foreground">{t("manageServiceRequests")}</p>
       </div>
 
       <div className="space-y-4">

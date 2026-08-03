@@ -65,7 +65,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           
           <div className="lg:col-span-2 space-y-20">
             <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-              <h2 className="font-heading text-3xl font-bold tracking-tight mb-10">What's Included</h2>
+              <h2 className="font-heading text-3xl font-bold tracking-tight mb-10">{t("whatsIncluded")}</h2>
               <ul className="grid gap-6 sm:grid-cols-2">
                 {[
                   "Complete deep cleaning of all rooms",
@@ -93,16 +93,16 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               <h2 className="font-heading text-3xl font-bold tracking-tight mb-10">{t("servicePackages")}</h2>
               <div className="grid gap-8 sm:grid-cols-2">
                 <Card className="p-8 border-black/5 bg-white shadow-sm hover:shadow-md transition-all rounded-3xl">
-                  <h3 className="font-bold text-2xl tracking-tight">Standard</h3>
+                  <h3 className="font-bold text-2xl tracking-tight">{t("standardPkg")}</h3>
                   <div className="my-6 text-4xl font-extrabold tracking-tight">₹{service.basePrice}</div>
-                  <p className="text-base text-muted-foreground mb-8 min-h-[48px]">Perfect for regular home maintenance and upkeep.</p>
+                  <p className="text-base text-muted-foreground mb-8 min-h-[48px]">{t("standardDesc")}</p>
                   <Button variant="outline" className="w-full h-14 font-semibold rounded-2xl border-black/10 hover:bg-secondary">{t("select")}</Button>
                 </Card>
                 <Card className="p-8 border-primary/20 bg-primary/5 ring-1 ring-primary relative overflow-hidden rounded-3xl shadow-lg">
-                  <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-xs font-bold px-4 py-1.5 rounded-bl-xl tracking-wider uppercase">POPULAR</div>
-                  <h3 className="font-bold text-2xl tracking-tight">Premium</h3>
+                  <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-xs font-bold px-4 py-1.5 rounded-bl-xl tracking-wider uppercase">{t("popularBadge")}</div>
+                  <h3 className="font-bold text-2xl tracking-tight">{t("premiumPkg")}</h3>
                   <div className="my-6 text-4xl font-extrabold tracking-tight">₹{service.basePrice + 2000}</div>
-                  <p className="text-base text-muted-foreground mb-8 min-h-[48px]">Includes advanced sanitization.</p>
+                  <p className="text-base text-muted-foreground mb-8 min-h-[48px]">{t("premiumDesc")}</p>
                   <Button className="w-full h-14 font-semibold rounded-2xl shadow-md">{t("select")}</Button>
                 </Card>
               </div>
@@ -113,7 +113,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             <div className="sticky top-28 animate-in fade-in slide-in-from-right-4 duration-700 delay-200 fill-mode-both">
               <Card className="p-8 border-black/5 rounded-3xl shadow-xl bg-white relative overflow-hidden">
                 <div className="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 rounded-full bg-primary/5 blur-3xl" />
-                <h3 className="font-heading text-xl font-bold tracking-tight mb-6 relative z-10">Why choose MadClap?</h3>
+                <h3 className="font-heading text-xl font-bold tracking-tight mb-6 relative z-10">{t("whyChooseUs")}</h3>
                 <ul className="space-y-6 relative z-10">
                   <li className="flex gap-4">
                     <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
@@ -121,7 +121,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     </div>
                     <div>
                       <h5 className="font-semibold text-foreground">{t("backgroundVerified")}</h5>
-                      <p className="text-sm text-muted-foreground mt-1">Strict background checks on all staff.</p>
+                      <p className="text-sm text-muted-foreground mt-1">{t("strictBackground")}</p>
                     </div>
                   </li>
                   <li className="flex gap-4">
@@ -130,7 +130,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     </div>
                     <div>
                       <h5 className="font-semibold text-foreground">{t("transparentPricing")}</h5>
-                      <p className="text-sm text-muted-foreground mt-1">No hidden fees or surprise charges.</p>
+                      <p className="text-sm text-muted-foreground mt-1">{t("noHiddenFees")}</p>
                     </div>
                   </li>
                   <li className="flex gap-4">
@@ -138,8 +138,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       <MapPin size={14} />
                     </div>
                     <div>
-                      <h5 className="font-semibold text-foreground">Real-time Tracking</h5>
-                      <p className="text-sm text-muted-foreground mt-1">Track your professional's arrival live.</p>
+                      <h5 className="font-semibold text-foreground">{t("realTimeTracking")}</h5>
+                      <p className="text-sm text-muted-foreground mt-1">{t("trackLive")}</p>
                     </div>
                   </li>
                 </ul>

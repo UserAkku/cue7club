@@ -38,7 +38,7 @@ export default async function ProfilePage() {
               {user.role}
             </Badge>
           </div>
-          <p className="text-muted-foreground text-lg">Manage your personal information and preferences.</p>
+          <p className="text-muted-foreground text-lg">{t("manageInfo")}</p>
         </div>
       </div>
 

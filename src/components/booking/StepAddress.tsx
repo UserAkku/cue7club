@@ -27,7 +27,7 @@ export function StepAddress({ addressId, addressDetails, onSelect, onNext, onBac
       <div className="h-full flex flex-col">
         <div className="flex justify-between items-center mb-4">
           <h2 className="font-heading text-xl font-bold">{t("pinLocation")}</h2>
-          <Button variant="ghost" size="sm" onClick={() => setShowMap(false)}>Cancel</Button>
+          <Button variant="ghost" size="sm" onClick={() => setShowMap(false)}>{t("cancel")}</Button>
         </div>
         <div className="flex-1 min-h-[300px] rounded-xl overflow-hidden border border-white/10">
           <AddressPinMap onConfirm={handleMapConfirm} />
@@ -74,7 +74,7 @@ export function StepAddress({ addressId, addressDetails, onSelect, onNext, onBac
       </div>
 
       <div className="flex gap-4">
-        <Button variant="outline" onClick={onBack}>Back</Button>
+        <Button variant="outline" onClick={onBack}>{t("backBtn")}</Button>
         <Button onClick={onNext} disabled={!addressId} className="flex-1">{t("continueToPayment")}</Button>
       </div>
     </div>

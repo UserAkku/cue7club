@@ -52,7 +52,7 @@ export default async function ServicesPage() {
                   <div className="mt-2 flex items-center text-sm text-muted-foreground">
                     <span className="text-warning">★ 4.9</span>
                     <span className="mx-2">•</span>
-                    <span>124 reviews</span>
+                    <span>{t("reviewsCount")}</span>
                   </div>
                 </div>
                 <div className="mt-6 flex items-center justify-between">

@@ -115,7 +115,7 @@ export default function ProfileForm({ user }: { user: UserData }) {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
           <div>
             <h3 className="font-heading text-xl font-bold tracking-tight text-destructive mb-1">{t("accountActions") || "Account Actions"}</h3>
-            <p className="text-sm text-muted-foreground">Sign out of your account on this device.</p>
+            <p className="text-sm text-muted-foreground">{t("signOutDevice")}</p>
           </div>
           <Button 
             variant="outline" 

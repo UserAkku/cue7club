@@ -27,11 +27,11 @@ export default function SchedulePage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-10 gap-4">
         <div>
           <h1 className="font-heading text-4xl font-bold tracking-tight mb-2">{t("schedule")}</h1>
-          <p className="text-muted-foreground">Manage your availability and upcoming appointments.</p>
+          <p className="text-muted-foreground">{t("manageAvailability")}</p>
         </div>
         
         <Card className="flex items-center gap-4 p-2 pl-4 border-black/5 bg-white shadow-sm rounded-full">
-          <span className="text-sm font-medium">Status:</span>
+          <span className="text-sm font-medium">{t("statusLabel")}</span>
           <Badge 
             variant="outline" 
             className={`px-3 py-1 text-sm \${isAvailable ? 'text-success border-success/30 bg-success/5' : 'text-danger border-danger/30 bg-danger/5'}`}
@@ -50,10 +50,10 @@ export default function SchedulePage() {
       </div>
 
       <div className="mb-6 flex items-center justify-between">
-        <h2 className="font-heading text-2xl font-semibold tracking-tight">Today</h2>
+        <h2 className="font-heading text-2xl font-semibold tracking-tight">{t("today")}</h2>
         <Button variant="ghost" className="text-primary gap-2">
           <Calendar size={18} />
-          <span className="hidden sm:inline">Select Date</span>
+          <span className="hidden sm:inline">{t("selectDate") || "Select Date"}</span>
         </Button>
       </div>
 

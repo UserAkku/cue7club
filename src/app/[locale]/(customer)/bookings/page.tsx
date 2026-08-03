@@ -91,7 +91,7 @@ export default async function BookingsPage({ params }: { params: Promise<{ local
         )) : (
           <div className="text-center py-24 bg-white rounded-3xl border border-black/5">
             <h3 className="font-heading text-2xl font-bold mb-2">{t("noBookingsFound") || "No bookings found"}</h3>
-            <p className="text-muted-foreground mb-6">You haven't booked any services yet.</p>
+            <p className="text-muted-foreground mb-6">{t("noBookingsYet")}</p>
             <Link href="/services">
               <Button size="lg" className="rounded-full px-8">{t("browseServices") || "Browse Services"}</Button>
             </Link>
