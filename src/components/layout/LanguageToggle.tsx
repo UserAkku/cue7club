@@ -10,7 +10,7 @@ export function LanguageToggle() {
   const pathname = usePathname();
 
   const toggleLocale = () => {
-    const nextLocale = locale === "en" ? "hi" : "en";
+    const nextLocale = locale === "en" ? "vi" : "en";
     router.replace(pathname, { locale: nextLocale });
   };
 
@@ -21,7 +21,7 @@ export function LanguageToggle() {
       onClick={toggleLocale}
       className="rounded-full font-medium"
     >
-      {locale === "en" ? "हिं" : "EN"}
+      {locale === "en" ? "VI" : "EN"}
     </Button>
   );
 }

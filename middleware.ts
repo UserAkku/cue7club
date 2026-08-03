@@ -14,7 +14,7 @@ export default auth((req) => {
   console.log("MIDDLEWARE HIT:", pathname);
 
   // Get locale prefix from the path
-  const localeMatch = pathname.match(/^\/(en|hi)/);
+  const localeMatch = pathname.match(/^\/(en|vi)/);
   
   // If no locale is found and it's not an excluded path (like API), force redirect to /en
   if (!localeMatch && pathname !== "/") {
@@ -24,7 +24,7 @@ export default auth((req) => {
   const locale = localeMatch ? localeMatch[1] : "en";
 
   // Strip locale prefix for route matching (/en/dashboard -> /dashboard)
-  const pathnameWithoutLocale = pathname.replace(/^\/(en|hi)/, "") || "/";
+  const pathnameWithoutLocale = pathname.replace(/^\/(en|vi)/, "") || "/";
 
   const isAuth = !!req.auth;
   const isAuthPage = /^\/(login|register|pro\/register|customer\/register|verify-otp)/.test(pathnameWithoutLocale);
