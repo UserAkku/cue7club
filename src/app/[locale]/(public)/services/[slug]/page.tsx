@@ -28,19 +28,13 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         <div className="container relative mx-auto max-w-[1200px] px-4 sm:px-6 z-10">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-12">
             <div className="max-w-3xl animate-in fade-in slide-in-from-bottom-4 duration-700">
-              <div className="mb-6 inline-flex items-center rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold tracking-wide uppercase text-primary ring-1 ring-primary/20 backdrop-blur-sm">
-                Premium {service.category.name} Service
-              </div>
-              <h1 className="font-heading text-5xl font-extrabold tracking-tight md:text-6xl lg:text-7xl mb-6 text-foreground">
-                {service.name}
-              </h1>
-              <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
-                {service.description}
-              </p>
+              <div className="mb-6 inline-flex items-center rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold tracking-wide uppercase text-primary ring-1 ring-primary/20 backdrop-blur-sm">{t("premiumCategoryService", { category: t(service.category.slug as any) })}</div>
+              <h1 className="font-heading text-5xl font-extrabold tracking-tight md:text-6xl lg:text-7xl mb-6 text-foreground">{t(service.slug as any)}</h1>
+              <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">{t("serviceDesc")}</p>
               
               <div className="flex flex-wrap gap-6 mt-10 text-sm font-medium text-foreground/80">
-                <div className="flex items-center gap-2"><Clock className="text-primary" size={20} /> Takes ~{service.duration} mins</div>
-                <div className="flex items-center gap-2"><ShieldCheck className="text-primary" size={20} /> 30-Day Guarantee</div>
+                <div className="flex items-center gap-2"><Clock className="text-primary" size={20} />{t("takesMins", { duration: service.duration })}</div>
+                <div className="flex items-center gap-2"><ShieldCheck className="text-primary" size={20} />{t("thirtyDayGuarantee")}</div>
               </div>
             </div>
             
@@ -50,9 +44,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 <div className="text-sm font-medium text-muted-foreground mt-1">{t("startingPrice")}</div>
               </div>
               <Link href={`/book/${service.slug}`}>
-                <Button size="lg" className="h-16 px-10 text-lg font-semibold rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all">
-                  Book Now
-                </Button>
+                <Button size="lg" className="h-16 px-10 text-lg font-semibold rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all">{t("bookNow")}</Button>
               </Link>
             </div>
           </div>

@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 
 export default async function ServicesPage() {
-  const t = await getTranslations("Navigation");
+  const t = await getTranslations("Services");
   
   // Fetch services from Database
   const services = await prisma.service.findMany({
@@ -16,20 +16,14 @@ export default async function ServicesPage() {
   return (
     <div className="container mx-auto max-w-[1400px] px-4 py-12 sm:px-6">
       <div className="mb-12">
-        <h1 className="font-heading text-4xl font-bold tracking-tight md:text-5xl">
-          Premium Services
-        </h1>
-        <p className="mt-4 text-lg text-muted-foreground">
-          Browse our catalog of verified, top-tier professional services.
-        </p>
+        <h1 className="font-heading text-4xl font-bold tracking-tight md:text-5xl">{t("premiumServicesTitle")}</h1>
+        <p className="mt-4 text-lg text-muted-foreground">{t("browseCatalog")}</p>
       </div>
 
       {/* Basic Filter Bar (UI only) */}
       <div className="mb-8 flex flex-wrap gap-4 border-b border-black/5 pb-4">
         {["All", "Cleaning", "Garden", "Pool", "Health"].map((cat) => (
-          <button key={cat} className="text-sm font-medium text-muted-foreground hover:text-foreground">
-            {cat}
-          </button>
+          <button key={cat} className="text-sm font-medium text-muted-foreground hover:text-foreground">{t(`filter_${cat}` as any)}</button>
         ))}
       </div>
 
@@ -44,10 +38,10 @@ export default async function ServicesPage() {
               <CardContent className="flex flex-1 flex-col justify-between p-6">
                 <div>
                   <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-primary">
-                    {service.category.name}
+                    {t(service.category.slug as any)}
                   </div>
                   <h3 className="font-heading text-xl font-semibold leading-tight">
-                    {service.name}
+                    {t(service.slug as any)}
                   </h3>
                   <div className="mt-2 flex items-center text-sm text-muted-foreground">
                     <span className="text-warning">★ 4.9</span>
@@ -56,9 +50,7 @@ export default async function ServicesPage() {
                   </div>
                 </div>
                 <div className="mt-6 flex items-center justify-between">
-                  <div className="font-medium text-foreground">
-                    From ₹{service.basePrice}
-                  </div>
+                  <div className="font-medium text-foreground">{t("fromPrice", { price: service.basePrice })}</div>
                   <Button size="sm" variant="outline">{t("viewDetails")}</Button>
                 </div>
               </CardContent>
