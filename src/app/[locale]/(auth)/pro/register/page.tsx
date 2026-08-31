@@ -104,7 +104,7 @@ export default function ProRegisterPage() {
             onClick={() => {
               // Set a cookie so auth.ts knows this is a PRO registration
               document.cookie = "intended_role=PROFESSIONAL; path=/; max-age=300";
-              signIn("google", { callbackUrl: `/${locale}/pro/dashboard` });
+              signIn("google", { callbackUrl: `/${locale}` });
             }}
           >
             <GoogleLogo size={20} className="mr-2" />

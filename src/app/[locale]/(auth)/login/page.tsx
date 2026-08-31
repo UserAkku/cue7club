@@ -105,7 +105,7 @@ export default function LoginPage() {
           <Button
             variant="outline"
             className="w-full"
-            onClick={() => signIn("google", { callbackUrl: `/${locale}/dashboard` })}
+            onClick={() => signIn("google", { callbackUrl: `/${locale}` })}
           >
             <GoogleLogo size={20} className="mr-2" />
             Continue with Google

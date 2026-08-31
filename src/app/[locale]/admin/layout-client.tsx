@@ -3,20 +3,21 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { SignOut, ChartBar, Users, ShieldCheck, GridFour, CalendarCheck } from "@phosphor-icons/react";
+import { SignOut, ChartBar, Users, ShieldCheck, GridFour, CalendarCheck, Gear } from "@phosphor-icons/react";
 import { signOut } from "next-auth/react";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const t = useTranslations("Admin");
   const tDash = useTranslations("Dashboard");
-
+  
   const navItems = [
-    { href: "/admin", label: t("analytics"), icon: ChartBar },
-    { href: "/admin/professionals", label: t("professionals"), icon: ShieldCheck },
-    { href: "/admin/bookings", label: t("allBookings"), icon: CalendarCheck },
-    { href: "/admin/users", label: t("customers"), icon: Users },
-    { href: "/admin/services", label: t("services"), icon: GridFour },
+    { href: "/admin", label: t("analytics") || "Analytics", icon: ChartBar },
+    { href: "/admin/professionals", label: t("professionals") || "Professionals", icon: ShieldCheck },
+    { href: "/admin/bookings", label: t("allBookings") || "Bookings", icon: CalendarCheck },
+    { href: "/admin/users", label: t("customers") || "Users", icon: Users },
+    { href: "/admin/services", label: t("services") || "Services", icon: GridFour },
+    { href: "/admin/settings", label: t("settings") || "Settings", icon: Gear },
   ];
 
   return (

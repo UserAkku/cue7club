@@ -51,13 +51,33 @@ export default auth((req) => {
     if (isAdminRoute && role !== "ADMIN") {
       return NextResponse.redirect(new URL(`/${locale}/dashboard`, req.nextUrl));
     }
-    if (isProRoute && role !== "PROFESSIONAL" && role !== "ADMIN") {
-      return NextResponse.redirect(new URL(`/${locale}/dashboard`, req.nextUrl));
+    
+    if (isProRoute) {
+      if (role !== "PROFESSIONAL" && role !== "ADMIN") {
+        return NextResponse.redirect(new URL(`/${locale}/dashboard`, req.nextUrl));
+      }
+      
+      const onboardingStatus = (req.auth?.user as any)?.onboardingStatus || "PENDING_PROFILE";
+      const isOnboardingPage = pathnameWithoutLocale.startsWith("/pro/onboarding");
+      
+      if (role === "PROFESSIONAL" && onboardingStatus !== "ACTIVE" && !isOnboardingPage) {
+        return NextResponse.redirect(new URL(`/${locale}/pro/onboarding`, req.nextUrl));
+      }
+      
+      if (role === "PROFESSIONAL" && onboardingStatus === "ACTIVE" && isOnboardingPage) {
+        return NextResponse.redirect(new URL(`/${locale}/pro/dashboard`, req.nextUrl));
+      }
     }
 
     if (isAuthPage) {
       if (role === "ADMIN") return NextResponse.redirect(new URL(`/${locale}/admin`, req.nextUrl));
-      if (role === "PROFESSIONAL") return NextResponse.redirect(new URL(`/${locale}/pro/dashboard`, req.nextUrl));
+      if (role === "PROFESSIONAL") {
+        const onboardingStatus = (req.auth?.user as any)?.onboardingStatus || "PENDING_PROFILE";
+        if (onboardingStatus !== "ACTIVE") {
+          return NextResponse.redirect(new URL(`/${locale}/pro/onboarding`, req.nextUrl));
+        }
+        return NextResponse.redirect(new URL(`/${locale}/pro/dashboard`, req.nextUrl));
+      }
       return NextResponse.redirect(new URL(`/${locale}/dashboard`, req.nextUrl));
     }
   }

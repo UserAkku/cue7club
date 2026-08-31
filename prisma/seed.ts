@@ -3,6 +3,23 @@ import { prisma } from '../src/lib/db';
 async function main() {
   console.log('Start seeding...');
 
+  // 0. Platform Settings
+  await prisma.platformSettings.upsert({
+    where: { id: "singleton" },
+    update: {},
+    create: {
+      id: "singleton",
+      platformFeePercent: 15,
+      freeDistanceKm: 5,
+      transportRatePerKm: 15,
+      workerTransportShare: 0.8,
+      cancellationWindowHrs: 24,
+      payoutSchedule: "WEEKLY",
+      payoutDayOfWeek: 5,
+      minBookingAmount: 200,
+    }
+  });
+
   // 1. Create Categories
   const cleaningCategory = await prisma.serviceCategory.upsert({
     where: { slug: 'cleaning' },
@@ -57,8 +74,10 @@ async function main() {
     { slug: "physio-home", title: "At-Home Physiotherapy", price: 1299, categoryId: healthCategory.id },
   ];
 
+  const dbServices = [];
+
   for (const svc of PREVIEW_SERVICES) {
-    await prisma.service.upsert({
+    const dbSvc = await prisma.service.upsert({
       where: { slug: svc.slug },
       update: {},
       create: {
@@ -73,6 +92,60 @@ async function main() {
         isPopular: true,
       }
     });
+    dbServices.push(dbSvc);
+  }
+
+  // 3. Admin User
+  await prisma.user.upsert({
+    where: { email: 'admin@madclap.com' },
+    update: {},
+    create: {
+      email: 'admin@madclap.com',
+      name: 'Admin',
+      role: 'ADMIN',
+    }
+  });
+
+  // 4. Dummy Professionals
+  const proUser = await prisma.user.upsert({
+    where: { email: 'pro@madclap.com' },
+    update: {},
+    create: {
+      email: 'pro@madclap.com',
+      name: 'John Doe',
+      role: 'PROFESSIONAL',
+    }
+  });
+
+  const pro = await prisma.professional.upsert({
+    where: { userId: proUser.id },
+    update: {},
+    create: {
+      userId: proUser.id,
+      bio: "Expert cleaner with 5 years experience",
+      rating: 4.8,
+      totalReviews: 24,
+      onboardingStatus: "ACTIVE",
+    }
+  });
+
+  // Link Pro to Services
+  if (dbServices.length > 0) {
+    for (const svc of dbServices.slice(0, 2)) {
+      await prisma.professionalService.upsert({
+        where: {
+          professionalId_serviceId: {
+            professionalId: pro.id,
+            serviceId: svc.id
+          }
+        },
+        update: {},
+        create: {
+          professionalId: pro.id,
+          serviceId: svc.id
+        }
+      });
+    }
   }
 
   console.log('Seeding finished.');

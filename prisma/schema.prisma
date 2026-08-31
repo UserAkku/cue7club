@@ -6,6 +6,32 @@ datasource db {
   provider  = "postgresql"
 }
 
+// ─── PLATFORM SETTINGS ───────────────────────────────────────────────────────
+
+model PlatformSettings {
+  id                    String   @id @default("singleton")
+  
+  // Pricing
+  platformFeePercent    Float    @default(15)     // 15% platform cut
+  freeDistanceKm        Float    @default(5)      // First 5km free
+  transportRatePerKm    Float    @default(15)     // Rs.15/km after free distance
+  workerTransportShare  Float    @default(0.8)    // 80% of transport fee goes to worker
+  
+  // Cancellation
+  cancellationWindowHrs Int      @default(24)     // Cancel up to 24hrs before scheduled time
+  
+  // Payouts
+  payoutSchedule        String   @default("WEEKLY")   // WEEKLY, BIWEEKLY, MONTHLY
+  payoutDayOfWeek       Int      @default(5)       // 5 = Friday
+  
+  // Business
+  minBookingAmount      Float    @default(200)
+  supportEmail          String   @default("support@madclap.com")
+  supportPhone          String   @default("")
+  
+  updatedAt             DateTime @updatedAt
+}
+
 // ─── USERS ─────────────────────────────────────────────────────────────────
 
 model User {
@@ -52,6 +78,15 @@ model OtpToken {
 
 // ─── PROFESSIONAL PROFILE ──────────────────────────────────────────────────
 
+enum OnboardingStatus {
+  PENDING_PROFILE
+  PENDING_DOCUMENTS
+  PENDING_APPROVAL
+  ACTIVE
+  REJECTED
+  SUSPENDED
+}
+
 model Professional {
   id              String   @id @default(cuid())
   userId          String   @unique
@@ -62,16 +97,35 @@ model Professional {
   isVerified      Boolean  @default(false)
   isActive        Boolean  @default(true)
   aadharVerified  Boolean  @default(false)
-  earnings        Float    @default(0)
-  lastLat         Float?
-  lastLng         Float?
-  lastLocationAt  DateTime?
-  createdAt       DateTime @default(now())
+  earnings          Float    @default(0)
+  lastLat           Float?
+  lastLng           Float?
+  lastLocationAt    DateTime?
+  onboardingStatus  OnboardingStatus @default(PENDING_PROFILE)
+  idDocumentUrl     String?
+  idDocumentType    String?
+  idDocumentName    String?
+  rejectionReason   String?
+  createdAt         DateTime @default(now())
 
-  user            User           @relation(fields: [userId], references: [id], onDelete: Cascade)
-  serviceAreas    ServiceArea[]
-  jobs            Booking[]      @relation("ProfessionalBookings")
-  availability    Availability[]
+  user              User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  serviceAreas      ServiceArea[]
+  jobs              Booking[]      @relation("ProfessionalBookings")
+  availability      Availability[]
+  offeredServices   ProfessionalService[]
+  payouts           Payout[]
+}
+
+model ProfessionalService {
+  id              String       @id @default(cuid())
+  professionalId  String
+  serviceId       String
+  createdAt       DateTime     @default(now())
+
+  professional    Professional @relation(fields: [professionalId], references: [id], onDelete: Cascade)
+  service         Service      @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  @@unique([professionalId, serviceId])
 }
 
 // ─── SERVICE CATEGORIES ────────────────────────────────────────────────────
@@ -79,12 +133,10 @@ model Professional {
 model ServiceCategory {
   id          String    @id @default(cuid())
   name        String    @unique
-  nameHi      String?
   slug        String    @unique
   icon        String
   image       String?
   description String?
-  descHi      String?
   isActive    Boolean   @default(true)
   sortOrder   Int       @default(0)
 
@@ -97,12 +149,9 @@ model Service {
   id          String   @id @default(cuid())
   categoryId  String
   name        String
-  nameHi      String?
   slug        String   @unique
   description String
-  descHi      String?
   shortDesc   String
-  shortDescHi String?
   basePrice   Float
   priceUnit   String
   duration    Int
@@ -111,20 +160,19 @@ model Service {
   isActive    Boolean  @default(true)
   sortOrder   Int      @default(0)
 
-  category    ServiceCategory  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  packages    ServicePackage[]
-  bookings    Booking[]
+  category             ServiceCategory       @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  packages             ServicePackage[]
+  bookings             Booking[]
+  professionalServices ProfessionalService[]
 }
 
 model ServicePackage {
   id          String   @id @default(cuid())
   serviceId   String
   name        String
-  nameHi      String?
   price       Float
   duration    Int
   description String
-  descHi      String?
   includes    String[]
 
   service     Service   @relation(fields: [serviceId], references: [id], onDelete: Cascade)
@@ -165,8 +213,13 @@ model Booking {
   completedAt     DateTime?
   totalAmount     Float
   platformFee     Float
+  workerAmount    Float?
+  distanceKm      Float?
+  transportFee    Float?
   notes           String?
   otp             String?
+  cancelledAt     DateTime?
+  cancelReason    String?
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
 
@@ -178,6 +231,7 @@ model Booking {
   payment         Payment?
   review          Review?
   timeline        BookingTimeline[]
+  payouts         PayoutBooking[]
 }
 
 enum BookingStatus {
@@ -213,6 +267,37 @@ enum PaymentStatus {
   SUCCESS
   FAILED
   REFUNDED
+}
+
+// ─── PAYOUTS ───────────────────────────────────────────────────────────────
+
+model Payout {
+  id              String        @id @default(cuid())
+  professionalId  String
+  amount          Float
+  status          PayoutStatus  @default(SCHEDULED)
+  scheduledFor    DateTime
+  processedAt     DateTime?
+  notes           String?
+  createdAt       DateTime      @default(now())
+  
+  professional    Professional  @relation(fields: [professionalId], references: [id])
+  bookings        PayoutBooking[]
+}
+
+model PayoutBooking {
+  payoutId  String
+  bookingId String
+  payout    Payout  @relation(fields: [payoutId], references: [id])
+  booking   Booking @relation(fields: [bookingId], references: [id])
+  @@id([payoutId, bookingId])
+}
+
+enum PayoutStatus {
+  SCHEDULED
+  PROCESSING
+  COMPLETED
+  FAILED
 }
 
 // ─── REVIEWS ───────────────────────────────────────────────────────────────

@@ -8,13 +8,23 @@ import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import type { Session } from "next-auth";
 
-export default function DashboardClient({ session }: { session: Session }) {
+export default function DashboardClient({ 
+  session,
+  stats: realStats,
+  upcomingJobs,
+  completedJobs,
+}: { 
+  session: Session;
+  stats: { jobsToday: number; earningsToday: number; rating: number };
+  upcomingJobs: any[];
+  completedJobs: any[];
+}) {
   const t = useTranslations("ProDashboard");
 
   const stats = [
-    { label: t("jobsToday"), value: "3", icon: Toolbox, color: "text-primary", bg: "bg-primary/5" },
-    { label: t("earningsToday"), value: "₹4,500", icon: CurrencyInr, color: "text-success", bg: "bg-success/5" },
-    { label: t("overallRating"), value: "4.9", icon: Star, color: "text-warning", bg: "bg-warning/5" },
+    { label: t("jobsToday") || "Jobs Today", value: realStats.jobsToday.toString(), icon: Toolbox, color: "text-primary", bg: "bg-primary/5" },
+    { label: t("earningsToday") || "Earnings Today", value: `₹${realStats.earningsToday.toLocaleString()}`, icon: CurrencyInr, color: "text-success", bg: "bg-success/5" },
+    { label: t("overallRating") || "Overall Rating", value: realStats.rating.toFixed(1), icon: Star, color: "text-warning", bg: "bg-warning/5" },
   ];
 
   return (
@@ -26,9 +36,9 @@ export default function DashboardClient({ session }: { session: Session }) {
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       >
         <h1 className="font-heading text-4xl font-bold tracking-tight mb-2">
-          {t("hello")}, {session?.user?.name || session?.user?.email?.split("@")[0] || "Professional"}
+          {t("hello") || "Hello"}, {session?.user?.name || session?.user?.email?.split("@")[0] || "Professional"}
         </h1>
-        <p className="text-muted-foreground text-lg">{t("summaryToday")}</p>
+        <p className="text-muted-foreground text-lg">{t("summaryToday") || "Here is a summary of your day"}</p>
       </motion.div>
 
       <div className="grid gap-6 sm:grid-cols-3 mb-16">
@@ -61,38 +71,52 @@ export default function DashboardClient({ session }: { session: Session }) {
         transition={{ duration: 0.6, delay: 0.3 }}
       >
         <div className="flex items-center justify-between mb-6">
-          <h2 className="font-heading text-2xl font-semibold tracking-tight">{t("todaysJobs")}</h2>
-          <Link href="/pro/jobs" className="text-sm text-primary hover:text-primary/80 transition-colors font-medium">{t("viewAllJobs")}</Link>
+          <h2 className="font-heading text-2xl font-semibold tracking-tight">{t("todaysJobs") || "Today's Jobs"}</h2>
+          <Link href="/pro/jobs" className="text-sm text-primary hover:text-primary/80 transition-colors font-medium">{t("viewAllJobs") || "View all jobs"}</Link>
         </div>
         
         <div className="space-y-4">
-          <Card className="p-6 border-black/5 bg-white hover:bg-secondary/20 shadow-sm transition-colors flex flex-col md:flex-row justify-between md:items-center gap-6 rounded-3xl">
-            <div>
-              <div className="flex items-center gap-3 mb-3">
-                <span className="bg-primary/10 text-primary border border-primary/20 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase tracking-wider">{t("upcoming")}</span>
-                <span className="text-sm font-medium text-muted-foreground">02:00 PM</span>
-              </div>
-              <h3 className="font-heading font-semibold text-xl tracking-tight mb-1">{t("fullDeepCleaning") || "Full Home Deep Cleaning"}</h3>
-              <p className="text-sm text-muted-foreground">123 Green Park, Block B, New Delhi</p>
+          {upcomingJobs.length === 0 && completedJobs.length === 0 && (
+            <div className="text-center py-10 bg-white border border-black/5 rounded-3xl text-muted-foreground">
+              No jobs scheduled for today.
             </div>
-            <Link href="/pro/jobs/1">
-              <Button size="lg" className="w-full md:w-auto font-medium rounded-2xl px-8 shadow-sm hover:shadow-md transition-all">{t("startJob")}</Button>
-            </Link>
-          </Card>
+          )}
+
+          {upcomingJobs.map(job => (
+            <Card key={job.id} className="p-6 border-black/5 bg-white hover:bg-secondary/20 shadow-sm transition-colors flex flex-col md:flex-row justify-between md:items-center gap-6 rounded-3xl">
+              <div>
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="bg-primary/10 text-primary border border-primary/20 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase tracking-wider">{job.status}</span>
+                  <span className="text-sm font-medium text-muted-foreground">
+                    {new Date(job.scheduledAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  </span>
+                </div>
+                <h3 className="font-heading font-semibold text-xl tracking-tight mb-1">{job.service?.name}</h3>
+                <p className="text-sm text-muted-foreground">{job.address?.line1}, {job.address?.city}</p>
+              </div>
+              <Link href={`/pro/jobs/${job.id}`}>
+                <Button size="lg" className="w-full md:w-auto font-medium rounded-2xl px-8 shadow-sm hover:shadow-md transition-all">Start Job</Button>
+              </Link>
+            </Card>
+          ))}
           
-          <Card className="p-6 border-black/5 bg-secondary/30 flex flex-col md:flex-row justify-between md:items-center gap-6 rounded-3xl opacity-75 grayscale-[30%]">
-            <div>
-              <div className="flex items-center gap-3 mb-3">
-                <span className="bg-success/10 text-success border border-success/20 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase tracking-wider">{t("completedLabel")}</span>
-                <span className="text-sm font-medium text-muted-foreground">10:00 AM</span>
+          {completedJobs.map(job => (
+            <Card key={job.id} className="p-6 border-black/5 bg-secondary/30 flex flex-col md:flex-row justify-between md:items-center gap-6 rounded-3xl opacity-75 grayscale-[30%]">
+              <div>
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="bg-success/10 text-success border border-success/20 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase tracking-wider">COMPLETED</span>
+                  <span className="text-sm font-medium text-muted-foreground">
+                    {new Date(job.scheduledAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  </span>
+                </div>
+                <h3 className="font-heading font-semibold text-xl tracking-tight mb-1">{job.service?.name}</h3>
+                <p className="text-sm text-muted-foreground">{job.address?.line1}, {job.address?.city}</p>
               </div>
-              <h3 className="font-heading font-semibold text-xl tracking-tight mb-1">{t("sofaCleaning") || "Sofa Cleaning"}</h3>
-              <p className="text-sm text-muted-foreground">45 Lajpat Nagar, New Delhi</p>
-            </div>
-            <div className="text-right">
-              <div className="font-semibold text-success text-xl">+₹1,499</div>
-            </div>
-          </Card>
+              <div className="text-right">
+                <div className="font-semibold text-success text-xl">+₹{job.workerAmount?.toLocaleString()}</div>
+              </div>
+            </Card>
+          ))}
         </div>
       </motion.div>
     </div>

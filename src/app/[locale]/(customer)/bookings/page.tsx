@@ -6,10 +6,10 @@ import { Calendar, Clock, MapPin } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 export default async function BookingsPage({ params }: { params: Promise<{ locale: string }> }) {
-  const t = useTranslations("Dashboard");
+  const t = await getTranslations("Dashboard");
   const resolvedParams = await params;
   const session = await auth();
   if (!session?.user?.id) redirect(`/${resolvedParams.locale}/login`);
